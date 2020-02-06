@@ -2,8 +2,8 @@ const mongoose = require('mongoose') ;
 const mongoosePaginate = require('mongoose-paginate') ;
 
 const UserShema = new mongoose.Schema({
-    first_name : {type : String , required : true},
-    last_name : {type : String , required : true},
+    firstName : {type : String , required : true},
+    lastName : {type : String , required : true},
     id : {type : String , required : true }
 });
 
@@ -17,7 +17,7 @@ UserShema.methods.saveUser = function(res){
         else
             console.log(data) , res.status(200).send({msg : "everything is okay!!!!"});
     })
-} ;
+};
 
 const userModel = mongoose.model('Users' , UserShema) ;
 

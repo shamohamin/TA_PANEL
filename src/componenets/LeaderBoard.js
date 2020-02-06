@@ -11,32 +11,38 @@ import { Navbar } from "./Navbar";
 const PaginateControlComponenet = PaginateConnector(USERS , PaginateControl) ;
 
 export class LeaderBoard extends React.Component {
-    
 
     render(){
+        
         return <div>
             <Navbar />
         <div className="main text-center">
             <div className="box">
                 {
-                    !this.props.is_loading ?<div> <table className="table table-bordered table-striped table-dark table-hover">
+                    !this.props.is_loading ?<div> <table style={{overflowX:'auto'}} className="table table-bordered table-striped table-dark table-hover">
                             <thead className="thead-dark">
                                 <tr>
                                     <th>ID</th><th>FirstName</th><th>LastName</th>
+                                    {this.props.data[0].grade.map((g , index) => <th key={index + 1}>homeWord{index}</th>)}
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.props.data.map(user => <tr key={user._id}>
+                                    this.props.data.map(item => <tr key={item.exercise_id}>
                                         <td>
-                                            {user.id}
+                                            {item.student_id}
                                         </td>
                                         <td>
-                                            {user.first_name}
+                                            {item.first_name}
                                         </td>
                                         <td>
-                                            {user.last_name}
+                                            {item.last_name}
                                         </td>
+                                        {
+                                            item.grade.map(g => <td>
+                                                {g}
+                                            </td>)
+                                        }
                                     </tr>) 
                                 }
                             </tbody>
