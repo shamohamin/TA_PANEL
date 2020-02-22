@@ -2,6 +2,12 @@ const con = require('../../msqlConnection') ;
 const _ = require('lodash') ;
 
 const sqlController = {
+    just_for_test : (req , res) => {
+        console.log(req.body)
+        const credential = _.pick(req.body , ['student_id'])
+        console.log(credential.student_id)
+        res.status(200).send({msg : 'register'})
+    },
     MakeUser : (req , res) => {
         const cre = _.pick(req.body , 
             ['student_id' , 'first_name' ,'last_name' , 'email' , 'gitlab_url']) ;

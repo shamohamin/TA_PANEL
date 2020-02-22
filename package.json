@@ -27,7 +27,7 @@
   },
   "scripts": {
     "reactStart": "react-scripts start",
-    "start": "npm-run-all --parallel reactStart server",
+    "start": "reactStart",
     "server": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

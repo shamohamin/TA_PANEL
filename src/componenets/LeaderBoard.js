@@ -19,9 +19,9 @@ export class LeaderBoard extends React.Component {
         <div className="main text-center">
             <div className="box">
                 {
-                    !this.props.is_loading ?<div> <table style={{overflowX:'auto'}} className="table table-bordered table-striped table-dark table-hover">
+                    !this.props.is_loading ?<div style={{overflowX : 'scroll'}}> <table className="table table-bordered table-striped table-dark table-hover">
                             <thead className="thead-dark">
-                                <tr>
+                                <tr> 
                                     <th>ID</th><th>FirstName</th><th>LastName</th>
                                     {this.props.data[0].grade.map((g , index) => <th key={index + 1}>homeWord{index}</th>)}
                                 </tr>

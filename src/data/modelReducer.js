@@ -1,4 +1,4 @@
-import { GETDATA , SET_PAGE_SIZE } from "./Types";
+import { GETDATA , SET_PAGE_SIZE, POSTID } from "./Types";
 
 export const modelReducer = (store , action) => {
     switch(action.type){
@@ -14,6 +14,11 @@ export const modelReducer = (store , action) => {
                 [`${action.dataType}_total`] : action.payload.total ,
                 [`${action.dataType}_params`] : action.payload.params ,
                 [`${action.dataType}_limit`] : action.payload.limit
+            }
+        case POSTID:
+            return {
+                ...store ,
+                studentID : action.payload.studentID
             }
         default:
             return store || {}

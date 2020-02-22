@@ -2,6 +2,11 @@ const UserModel = require('../dataShema/User') ;
 const _ = require('lodash') ;
 
 const controller = {
+    just_for_test : (req , res) => {
+        const credential = _.pick(req.body , ['studentId'])
+        console.log(credential.studentId)
+        res.status(200).send({msg : 'register'})
+    },
     makeUser : (req , res) => {
 
         const credential = _.pick(req.body , 

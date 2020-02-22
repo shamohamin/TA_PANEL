@@ -17,9 +17,9 @@ const apiRouter = require('./server/routes/api.routes') ;
 
 Router.use('/api' , apiRouter) ;
 
-createTable() ;
-inserInitial.makeSubmition() ;
-inserInitial.makeStudents() ;
+// createTable() ;
+// inserInitial.makeSubmition() ;
+// inserInitial.makeStudents() ;
 
 // mongoose.connect('mongodb://127.0.0.1:27017/ta',{
     // useNewUrlParser:true ,
