@@ -3,11 +3,6 @@ import validator from 'validator' ;
 
 export const Validate = (rules , data) => {
     let errors = {} ;
-    console.log("hello")
-
-    console.log(rules)
-    console.log(data)
-
     Object.keys(rules).forEach(key => {
         const fieldData = data[key] ;
         let errorsPerField = [] ;
@@ -35,12 +30,8 @@ export const Validate = (rules , data) => {
 
 const checkForm = (value) => {
     let ok = true ;
-
     const reg97 = new RegExp('9[0-9]{6}') ;
-    
-
     if(!(reg97.test(value)))
                 ok = false ;
-    
     return ok ;
 }

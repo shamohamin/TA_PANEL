@@ -14,7 +14,8 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
             this.state = {
                 homework : {
-                    description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ,
+                    description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.A condimentum vitae sapien pellentesque. Adipiscing enim eu turpis egestas pretium aenean pharetra. Diam maecenas sed enim ut sem viverra aliquet eget sit. Est sit amet facilisis magna etiam. Consectetur adipiscing elit ut aliquam purus sit. Porttitor massa id neque aliquam vestibulum morbi blandit. Non sodales neque sodales ut etiam sit amet nisl purus. Eu nisl nunc mi ipsum faucibus vitae aliquet. Fermentum leo vel orci porta non pulvinar neque laoreet. Elementum facilisis leo vel fringilla est ullamcorper. Amet cursus sit amet dictum sit amet justo donec enim. Egestas egestas fringilla phasellus faucibus.Vel facilisis volutpat est velit egestas. Ac felis donec et odio pellentesque. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. Cursus metus aliquam eleifend mi in nulla posuere. Quis blandit turpis cursus in hac habitasse platea dictumst. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Enim ut tellus elementum sagittis vitae et. Odio ut sem nulla pharetra diam sit amet. Tempor orci dapibus ultrices in iaculis nunc sed augue. Auctor eu augue ut lectus arcu bibendum at varius vel. Duis ultricies lacus sed turpis tincidunt id aliquet. Imperdiet proin fermentum leo vel orci porta. Nunc mattis enim ut tellus elementum sagittis vitae et." ,
+                    second_description: '',
                     title : "HomeWork1" ,
                     name : "fariborz" ,
                 },
@@ -67,23 +68,35 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             }
         }
 
+        componentDidMount(){
+            this.getWords();
+        }
+
+        getWords = () => {
+            for(let i = 0 ; i < this.state.homework.description.length ; i++){
+                let randomWord = '' ;
+                randomWord = this.state.homework.description.substr(0, i) ;
+                setTimeout(() => this.setState(state => state.homework.second_description = randomWord), i*20) ;
+            }
+        }
+
         render(){
             return <div>
                 <Navbar />
                 <div className="main">
                     <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px'}}>
-                        <div className="card"  style={{width:'100%'}}>
-                            <div className="card-header text-center head">
+                        <div className="card card-animation"  style={{width:'100%'}}>
+                            <div className="card-header  text-center head">
                                 {this.state.homework.title}
                             </div>
-                            <div className="card-body">
+                            <div className="card-body ">
                                 <div className="wrapper">
                                     <div className="h3 alert-success text-center">{this.state.successMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.failedMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.attentionError}</div>
                                     <h5 className="card-title pl-3">{this.state.homework.name}</h5>
                                     <hr className="ml-4 mr-4"/>
-                                    <p className="card-text text p-2">{this.state.homework.description}</p>
+                                    <p className="card-text text p-2">{this.state.homework.second_description}</p>
                                 </div>
                                 <hr />
                                 <div className="col-4">
