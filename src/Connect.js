@@ -1,5 +1,6 @@
 import React from 'react' ;
-import { BrowserRouter as Router , Route , Redirect , Switch } 
+import {HashRouter} from 'react-router-dom';
+import { Route , Redirect , Switch } 
                 from "react-router-dom";
 import { LeaderBoard } from "./componenets/LeaderBoard";
 import { DataGetterConnector } from "./componenets/Connectors/DataGetterConnector";
@@ -23,13 +24,13 @@ export class Connect extends React.Component {
 
 
     render(){
-        return <Router>
+        return <HashRouter>
             <Switch>
                 <Route path="/:section/:page?/" render = {routeProps => 
                             this.selectComponent(routeProps)} />
                 <Redirect to="/leaderboard/1" from="/"/>
             </Switch>
-        </Router>
+        </HashRouter>
     }
 
 }
