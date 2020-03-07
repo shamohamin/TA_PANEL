@@ -81,7 +81,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
         }
 
         render(){
-            return <div>
+            return <div className="homework-component">
                 <Navbar />
                 <div className="main">
                     <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px'}}>

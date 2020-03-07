@@ -1,0 +1,27 @@
+.home-component .container-made {
+    min-height: 100vh;
+    min-width: 100%;
+    background-image: linear-gradient(to bottom, #ff1a1a 5% , #000000 50% , white);
+}
+
+.home-component .text {
+    cursor: pointer;
+    font-size: 15em;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: -15px 15px 2px red;
+    padding-top: 10%;
+    text-align: center;
+    animation-name: box;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes box {
+    0%{text-shadow: -15px 15px 2px red;}
+    50%{text-shadow: 0  0  0 black;}
+    100%{text-shadow: 15px 15px 2px blue;}
+}

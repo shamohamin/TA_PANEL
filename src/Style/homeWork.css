@@ -1,25 +1,35 @@
-.main {
+.homework-component .main {
     background-color: #282c34;
     min-height : 100vh ;
     width: 100%;
     z-index: 1;
-    box-shadow: 0 10px 10px 0 white;
+    /* box-shadow: 0 0 0 10px ; */
     border-top: red ;
     border-width: 20px;
+}
+
+.homework-component .card-animation {
+    /* box-shadow: 0 0 40px 5px ; */
+    animation-name : main , fadeIn;
+    animation-duration : 2s , 2s;
+    animation-delay: 0s , 2s;
+    animation-direction: normal, alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1 , infinite;
     
 }
 
-.card-animation {
-    animation-name : main;
-    animation-duration : 2s ;
-    animation-fill-mode: forwards;
-}
-
-.card-header-animation {
+.homework-component .card-header-animation {
     animation-name : header;
     animation-duration : 2s ;
     animation-delay: 4s;
     animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0%{box-shadow: 0 0 10px 5px gray; z-index: 1; perspective: 100px;}
+    50%{box-shadow: 0 0 25px 5px gray; z-index: 2; perspective: 200px;}
+    100%{box-shadow: 0 0 40px 5px gray; z-index: 3; perspective: 300px;}
 }
 
 @keyframes header {
@@ -32,7 +42,7 @@
     100%{top:0px;}
 }
 
-.wrapper{
+.homework-component .wrapper{
     z-index: 3;
     border-top: 10px rebeccapurple;
     background-color: rgb(241, 225, 194);
@@ -45,23 +55,30 @@
     box-shadow: 0 1px 2px 0 ;
 }
 
-.head {
+.homework-component .head {
     background-color: #12475f;
     color: white;
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.text {
+.homework-component .text {
     text-align: justify;
     text-decoration: none;
     line-height: 25px;
     text-indent: 20px;
 }
 
-.input {
+.homework-component .input {
     border-top: none;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+.homework-component .wrapper p::first-letter {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
 }

@@ -14,6 +14,10 @@ export class Navbar extends React.Component {
 
             <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li className="nav-item">
+                        <ToggleLink to="/home" exact={false}
+                                    name="home"/>
+                    </li>
                     <li className="nav-item active">
                         <ToggleLink to="/leaderboard/1" exact={false}
                                     name="Leaderboard" />
