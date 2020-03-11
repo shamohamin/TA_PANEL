@@ -15,5 +15,5 @@ import { asyncMiddelware } from "./middelware";
 
 
 
-export default store = createStore(modelReducer ,
+export default createStore(modelReducer ,
         compose(applyMiddleware(asyncMiddelware))); ;
