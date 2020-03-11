@@ -27,14 +27,12 @@ export const PaginateConnector = (dataType , PresentedComponent) => {
             navTo : (page) => ownProps.history.push(`/${section}/${page}`)
         };
 
-        console.log(ds) ;
         const props = {
             currentPage : page ,
             pageCount : Math.ceil(Number(ds.total) / Number(ds.limit)),
             limit : Number(ds.limit) ,
             loading : ds.loading 
         };
-        console.log(props)
 
         return Object.assign({} , props , functionProps , ownProps)
     }

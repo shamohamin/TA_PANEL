@@ -14,7 +14,7 @@ export const DataGetterWrapper = (dataType , PresentedComponent) => {
                 page :  Number(this.props.match.params.page) || 1,
                 limit : Number(this.props.limit) || 5 ,
             };
-            console.log(params)
+            // console.log(params)
             if(Object.keys(params).find(key => params[key] !== dsData[key])){
                 this.props.getData(dataType , params) ;
             }

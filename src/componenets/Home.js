@@ -13,23 +13,24 @@ const Home = ({history}) => {
             setTimeout(() => setWord(() => JAVAWORD.substr(0,i)),i*400) ;
         } 
     }
-
-    const linkTo = () => history.push('/homeworks')
     
     useEffect(() => {
         updateWord();
     }, []);
 
     useEffect(() => {
+        let time ;
         if(word.length === 4){
-            console.log("hello");
-            setTimeout(() =>{
+            time = setTimeout(() =>{
                 setWord(() => "") 
                 updateWord()
             }, 2000) ;
         }
+        return () => clearTimeout(time);
     }, [word])
  
+
+
     return <React.Fragment>
         <div className="home-component">
             <div>
@@ -37,9 +38,18 @@ const Home = ({history}) => {
             </div>
             <div className="container-made">
                 <div className="text-wrapper">
-                    <h1 className="text" onClick={() => linkTo()}>
+                    <h1 className="text">
                         {word}
                     </h1>
+                </div>
+                <div style={{textAlign:"center"}}>
+                    <div className="right-link" 
+                            onClick={() => history.push('/homeworks')}>
+                        <h3>HomeWork</h3>
+                    </div>
+                    <div className="left-link" onClick={() => history.push('/leaderboard/1')}>
+                        <h3>leaderboard</h3>
+                    </div>
                 </div>
             </div>
         </div>
