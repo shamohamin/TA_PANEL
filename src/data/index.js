@@ -15,7 +15,7 @@ import { asyncMiddelware } from "./middelware";
 
 
 
-export default store = createStore(modelReducer ,
+export default createStore(modelReducer ,
         compose(applyMiddleware(asyncMiddelware)),
         // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
         ); ;
