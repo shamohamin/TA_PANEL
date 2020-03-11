@@ -42,7 +42,7 @@ const Home = ({history}) => {
                         {word}
                     </h1>
                 </div>
-                <div style={{textAlign:"center"}}>
+                <div style={{textAlign:"center" , marginTop:'5%'}}>
                     <div className="right-link" 
                             onClick={() => history.push('/homeworks')}>
                         <h3>HomeWork</h3>
