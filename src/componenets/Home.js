@@ -50,7 +50,6 @@ const Home = ({history}) => {
                     return state ;
                 })
             }
-            // console.log(count)
         }, 8500);
         
         setTimer(state => { 
@@ -92,7 +91,7 @@ const Home = ({history}) => {
                     <span className="maximum"></span>
                 </div>
                 <div style={{backgroundColor:'#2d132c'}}>
-                    <HomeToolbar />
+                    <HomeToolbar runClick={updateWord} setWord={setWord} setWord2={setWord2} setWord3={setWord3} setWord4={setWord4} />
                 </div>
                 <div style={{marginLeft:'-10px',color:'white'}}>
                     <div className="container">
