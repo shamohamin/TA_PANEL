@@ -20,7 +20,7 @@ export class LeaderBoard extends React.Component {
             <div className="main text-center">
                 <div className="box">
                     {
-                        !this.props.is_loading ?<div style={{overflowX : 'scroll'}}> <table className="table table-bordered table-striped table-dark table-hover">
+                        !this.props.is_loading && typeof(this.props.data) != "undefined" ?<div style={{overflowX : 'scroll'}}> <table className="table table-bordered table-striped table-dark table-hover">
                                 <thead className="thead-dark">
                                     <tr> 
                                         <th>ID</th><th>FirstName</th><th>LastName</th>

@@ -20,12 +20,11 @@ export class Connect extends React.Component {
             case "leaderboard":
                 if (typeof(page) === "undefined")
                     return <Redirect to="/leaderboard/1" />
-
                 return <LeaderBoardComponenet />
             case "home":
                 return <Home />
             default:
-                return <Redirect to="/home" from="/"/>
+                return <Redirect to="/home" />
         }
     }
 
