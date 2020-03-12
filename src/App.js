@@ -2,6 +2,7 @@ import React from 'react' ;
 import store from './data/index' ;
 import {Provider , } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
+import "@fortawesome/fontawesome-free/css/all.min.css" ;
 import { Connect } from "./Connect";
 
 function App() {
