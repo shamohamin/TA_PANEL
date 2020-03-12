@@ -14,9 +14,9 @@ const Home = ({history}) => {
 
 
     const updateWord = () => {
-        const JAVAWORD = "public class Classrome {";
-        const FINALHOMEWORK = "final static string HOMEWORK ;" ;
-        const FINAlLEADERBOARD = "final static string LEADERBOARD ;";
+        const JAVAWORD = "public class Classroom {";
+        const FINALHOMEWORK = "final static String HOMEWORK ;" ;
+        const FINAlLEADERBOARD = "final static String LEADERBOARD ;";
         
         // let count = 0 ;
 
@@ -110,7 +110,7 @@ const Home = ({history}) => {
                                                 <span className="fas fa-caret-down"> </span> java 
                                                 <div className="ml-2">
                                                     <span className="fas fa-caret-down"> </span> ir.ac.kntu
-                                                    <div className="ml-2"> <span style={{color:'red'}} className="fab fa-java"> </span> Classrome.java </div>
+                                                    <div className="ml-2"> <span style={{color:'red'}} className="fab fa-java"> </span> Classroom.java </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@ const Home = ({history}) => {
                             </div>
                             <div className="col">
                                 <div className="row" style={{borderBottom:'1px solid white', paddingTop:'5px'}}>
-                                    <span style={{color:'red', borderRight:'1px solid gray' , padding:'1px' , paddingRight:'10px' ,display:"block"}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> Classrome.java </span></span> 
+                                    <span style={{color:'red', borderRight:'1px solid gray' , padding:'1px' , paddingRight:'10px' ,display:"block"}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> Classroom.java </span></span> 
                                 </div>
                                 <div style={{paddingTop: '10p', overflow:'scroll'}}>
                                     <div>
