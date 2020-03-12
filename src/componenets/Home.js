@@ -10,6 +10,7 @@ const Home = ({history}) => {
     const [word3 , setWord3] = useState("") ;
     const [word4 , setWord4] = useState("") ;
     const [timerArray , setTimer] = useState([]);
+    
 
     const updateWord = () => {
         const JAVAWORD = "public class Classrome {";
