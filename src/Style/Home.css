@@ -115,3 +115,58 @@
     color: orange;
     padding-right: 2px;
 }
+
+.home-component .editor {
+    /* width: 100%; */
+    /* display: block; */
+    margin-top: 10%;
+    height: 100px;
+    color: black;
+    perspective: 100px;
+}
+
+.home-component .content-editable {
+    padding: 5px;
+    border: 1px solid gray;
+    min-height: 100px;
+    outline: 0px solid transparent;
+    color: white;
+}
+
+.home-component .content-editable span {
+    color: orange;
+}
+
+.home-component .editor-header {
+    background-color: gray;
+    position: relative;
+    display: block;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-left: 10px;
+}
+
+.home-component .content-editable font {
+    color: purple;
+}
+
+.home-component .icon {
+    float: left;
+    display: block;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.home-component .icon:hover {
+    border: 0.5px solid white;
+}
+
+.home-component .project-menu{
+    overflow-y: scroll;
+    height: 400px;
+    overflow-x: scroll;
+    border-bottom: 1px solid gray;
+}
