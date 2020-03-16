@@ -26,6 +26,10 @@ export class Navbar extends React.Component {
                         <ToggleLink to="/homeworks" exact={false}
                                     name="HomeWorks"/>
                     </li>
+                    <li className="nav-item">
+                        <ToggleLink to="/register" exact={true}
+                                    name="Register" />
+                    </li>
                 </ul>
             </div>
         </nav>

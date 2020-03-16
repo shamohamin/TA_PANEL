@@ -7,6 +7,7 @@ import { DataGetterConnector } from "./componenets/Connectors/DataGetterConnecto
 import { USERS } from './data/Types';
 import { HomeWork } from "./componenets/HomeWork";
 import Home from "./componenets/Home";
+import { FormComponent } from "./componenets/Forms/FormComponent";
 
 const LeaderBoardComponenet = DataGetterConnector(USERS , LeaderBoard) ;
 
@@ -23,6 +24,8 @@ export class Connect extends React.Component {
                 return <LeaderBoardComponenet />
             case "home":
                 return <Home />
+            case "register":
+                return <FormComponent />
             default:
                 return <Redirect to="/home" />
         }

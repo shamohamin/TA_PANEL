@@ -170,3 +170,9 @@
     overflow-x: scroll;
     border-bottom: 1px solid gray;
 }
+
+
+.home-component .icon-text {
+    color:'white';
+    font-size:'17px';
+}

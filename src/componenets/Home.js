@@ -6,7 +6,9 @@ import { HomeToolbar } from './HomeToolbar';
 import ConetentEditable from 'react-contenteditable' ;
 import {makeStyle , keyHandler , handlerUp} from './EditorHandler';
 import { CheckPMDTest } from './CheckPMDTest';
-import { Console } from './HomeComponents/Console'
+import { Console } from './HomeComponents/Console';
+import CheckPMDtext from "./contents/CheckPMDTest";
+import CheckStyleText from "./contents/CheckStyle";
 
 
 const Home = ({history}) => {
@@ -20,6 +22,8 @@ const Home = ({history}) => {
     const [editor, showEditor] = useState(true) ;
     const [PMD , showPMD] = useState(false);
     const [terminal, showTerminal] = useState(true);
+    const [CheckStyle, showCheckStyle] = useState(false);
+
 
     const setter = (ev) => makeStyle(ev , (data) => setContent(() => data))
 
@@ -67,9 +71,47 @@ const Home = ({history}) => {
         
     }
     
-    // useEffect(() => {
-    //     updateWord();
-    // }, []);
+
+    const chooseContent = () => {
+        if(CheckStyle){
+            return <CheckPMDTest text = {CheckStyleText} /> ;
+        }else if(PMD){
+            return <CheckPMDTest text= {CheckPMDtext} /> ;
+        }else{
+            return <React.Fragment>
+                <div>
+                    <span style={{color:'orange'}}>
+                        package
+                    </span>
+                    <span> ir.ac.kntu</span>
+                    <span style={{color:'orange' ,fontStyle:'bold'}}> ; </span>
+                </div>
+                <div className="te">
+                    <span>{word.substr(0,12)}</span>
+                    {word.substring(12)}
+                </div>        
+                <div className="right-link"
+                        onClick={() => history.push("/homeworks")} >
+                        <span>{word2.substr(0,12)}</span>
+                        <span style={{color:'white'}}> {word2.substr(12,20)} </span>
+                </div>
+                <div className="left-link " onClick={() => history.push('/leaderboard/1')}>
+                    <span>{word3.substr(0,12)}</span>
+                    { 
+                        word3.length !== 0 ? word3.substr(12) : ''
+                    }      
+                </div>
+                <div className="bracket">
+                    {word4}
+                </div> 
+            </React.Fragment>
+        }
+    }
+
+
+    useEffect(() => {
+        updateWord();
+    }, []);
 
     useEffect(() => {
         return () => {
@@ -90,6 +132,7 @@ const Home = ({history}) => {
                         showEditor(true);
                         showPMD(false);
                         showTerminal(true);
+                        showCheckStyle(false);
                     }} className="icon text-center">
                     <span  className="fab fa-java fa-2x text-center"></span>
                         <div>
@@ -123,6 +166,7 @@ const Home = ({history}) => {
                                                         <div style={{cursor:'pointer'}} onClick={() => {
                                                             showEditor(true);
                                                             showPMD(false);
+                                                            showCheckStyle(false);
                                                         }} className="ml-2"> <span style={{color:'red'}} className="fab fa-java"> </span> Classroom.java </div>
                                                     </div>
                                                 </div>
@@ -138,8 +182,13 @@ const Home = ({history}) => {
                                                             <span style={{color:'red' , display:"block", marginBottom:'3px' , cursor:'pointer'}} className="fab fa-java"><span onClick={() => {
                                                                 showEditor(false);
                                                                 showPMD(true);
+                                                                showCheckStyle(false);
                                                             }} style={{color:'white', fontSize:'17px'}}> CheckPMDTest.java </span></span> 
-                                                            <span style={{color:'red' ,display:"block"}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> CheckStyleTest.java </span></span> 
+                                                            <span onClick={() => {
+                                                                showEditor(false);
+                                                                showCheckStyle(true);
+                                                                showPMD(false);
+                                                            }} style={{color:'red' ,display:"block" , cursor:'pointer'}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> CheckStyleTest.java </span></span> 
                                                             <span style={{display:"block", marginBottom:'3px'}} className="fas fa-file-code"><span style={{color:'white',fontSize:'17px'}}> config.xml </span></span> 
                                                             <span style={{display:"block", marginBottom:'3px'}} className="fas fa-file-code"><span style={{color:'white',fontSize:'17px'}}> naming.xml </span></span> 
                                                         </div>
@@ -159,36 +208,8 @@ const Home = ({history}) => {
                                     </div>
                                     <div style={{height:'400px',overflowY:'scroll', overflowX:'scroll'}}>
                                         <div style={{paddingTop: '10p',}}>
-                                            {PMD ? <CheckPMDTest /> :  <React.Fragment>
-                                                <div>
-                                                    <span style={{color:'orange'}}>
-                                                        package
-                                                    </span>
-                                                    <span> ir.ac.kntu</span>
-                                                    <span style={{color:'orange' ,fontStyle:'bold'}}> ; </span>
-                                                </div>
-                                                <div className="te">
-                                                    <span>{word.substr(0,12)}</span>
-                                                    {word.substring(12)}
-                                                </div>        
-                                                <div className="right-link"
-                                                        onClick={() => history.push("/homeworks")} >
-                                                        <span>{word2.substr(0,12)}</span>
-                                                        <span style={{color:'white'}}> {word2.substr(12,20)} </span>
-                                                </div>
-                                                <div className="left-link " onClick={() => history.push('/leaderboard/1')}>
-                                                    <span>{word3.substr(0,12)}</span>
-                                                    { 
-                                                        word3.length !== 0 ? word3.substr(12) : ''
-                                                    }      
-                                                </div>
-                                                <div className="bracket">
-                                                    {word4}
-                                                </div> 
-                                            </React.Fragment>
-                                        }
+                                            {chooseContent()}
                                         </div>
-                                    
                                         {!editor ? <div></div> :
                                             <div className="editor">
                                                 <div className="editor-header">

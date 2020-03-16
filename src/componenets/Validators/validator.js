@@ -11,13 +11,22 @@ export const Validate = (rules , data) => {
             errorsPerField.push("Value required!") ;
         }else{
             if(!validator.isEmpty(fieldData)){
-                if(rules[key].number && !validator.isNumeric(fieldData))
+                if(rules[key].number && !validator.isNumeric(fieldData)){
                     errorsPerField.push("Value must be number!") ;
-                if(!checkForm(fieldData)){
+                }
+                if(rules[key].check && !checkForm(fieldData)){
                     errorsPerField.push("Value must be in correct form!") ;
                 }
-                if(String(fieldData).length !== 7)
+                if(rules[key].minLenght && String(fieldData).length !== 7){
                     errorsPerField.push("Length of value must be 7!") ;
+                }
+                if(rules[key].isEmail && !validator.isEmail(fieldData)){
+                    errorsPerField.push("Invalid email Address");
+                }
+                if(rules[key].isAlpha && !validator.isAlpha(fieldData)){
+                    errorsPerField.push("All letters must be Alphabetic")
+                }
+                
             }
         }
 
