@@ -39,9 +39,7 @@ export const Console = ({showTerminal}) => {
             return state ;
         })
     }
-
-
-    console.log(content.length)
+    
     return <div>    
         {tab.length === 0 ? '' :
             <div className="container">

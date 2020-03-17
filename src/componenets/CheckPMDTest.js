@@ -1,19 +1,15 @@
 import React,{useState , useEffect} from 'react';
 import {keyboards} from './EditorHandler';
-import text from "./contents/CheckPMDTest";
 import ContentEditable from 'react-contenteditable';
 import "../Style/Content.css";
 
-export const CheckPMDTest = (props) => {
+export const CheckPMDTest = ({text}) => {
     
     const [content, setContent] = useState("");
 
     const makeDivStyle = () => {
         
-        let cont = text ;
-        // let styledContent = "";
-        
-        let array = cont.split(/\n/);
+        let array = text.split(/\n/);
 
         for(let i = 5 ; i < array.length ;i++){
             let sentence = array[i].split(/\s/);
@@ -55,7 +51,6 @@ export const CheckPMDTest = (props) => {
                     continue ;
                 }
                 
-                // console.log(sentence);
                 let style = sentence[j];
                 if(keyboards.includes(style)){
                     style = `<span>${style}</span>`;
@@ -65,21 +60,18 @@ export const CheckPMDTest = (props) => {
             array[i] = sentence.join(" ");
         }
         
-        
-
-        
-        // console.log(array);
         array.join("<br/>")
         setContent(array.join("<br/>"));
     }
 
     useEffect(() => {
         makeDivStyle();
-    }, [])
-
+    })
 
 
     return <div className="content">
-        <ContentEditable html={content} />
+        <ContentEditable
+            html={content}
+            onKeyDown={event => event.preventDefault()} />
     </div>
 }

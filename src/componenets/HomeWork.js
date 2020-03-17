@@ -21,12 +21,14 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 isSubmitted : false ,
                 data :{
                     studentId : "" ,
+                    exerciseId : 1
                 },
                 rules : {
                     studentId : {
                         required : true ,
                         number : true ,
-                        maxlen : 7
+                        minLenght : 7,
+                        check : true
                     }
                 } ,
                 errors : {} ,
