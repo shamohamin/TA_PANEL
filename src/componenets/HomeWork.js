@@ -1,7 +1,7 @@
 import React from 'react' 
 import { Validate } from "./Validators/validator";
 import '../Style/homeWork.css';
-import {Navbar} from './Navbar';
+import { Navbar } from './Navbar';
 import { connect } from 'react-redux';
 import { postID } from "../data/actionCreator";
 
@@ -34,7 +34,8 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 errors : {} ,
                 attentionError : "",
                 successMsg : "",
-                failedMsg : ""
+                failedMsg : "",
+                dirty : {}
             }
         }
 
@@ -43,7 +44,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             
             Object.keys(this.state.errors).forEach(key => {
                 if(this.state.errors[key].length !== 0)
-                    ok = false ;
+                    ok = false;
             });
 
             return ok ;
@@ -51,7 +52,11 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
         onChange = (event) => {
             event.persist() ;
-            this.setState(state => state.data[event.target.name] = event.target.value.trim())
+            this.setState(state => {
+                state.data[event.target.name] = event.target.value.trim() ;
+                state.dirty[event.target.name] = true ;
+                return {...state} 
+            })
         }
 
         onClick = () => {
@@ -94,11 +99,16 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                 <hr />
                                 <div className="col-6">
                                     <div className="label pb-2 ml-1">  StudentID :</div>
-                                    <input className="form-control input" type="text" value={this.state.data.studentId}
+                                    <div className="row">
+                                        <div className="col-9">
+                                        <input className="form-control input ml-3" type="text" value={this.state.data.studentId}
                                                 placeholder="StudentID" name="studentId"
                                                 onChange = {(event) => this.onChange(event)} />
+                                        </div>
+                                        <div className="col-2 loading"><div></div><div></div><div></div></div>
+                                    </div>
                                     {
-                                        this.state.errors.studentId.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
+                                        this.state.dirty["studentId"] && this.state.errors.studentId.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
                                             {item}
                                         </div>)    
                                     }

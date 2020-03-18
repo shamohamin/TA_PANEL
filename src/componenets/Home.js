@@ -1,7 +1,7 @@
 import React,{useEffect , useState} from 'react';
 import "../Style/Home.css";
 import { Navbar } from "./Navbar";
-import { withRouter }  from 'react-router-dom'
+import { withRouter }  from 'react-router-dom';
 import { HomeToolbar } from './HomeToolbar';
 import ConetentEditable from 'react-contenteditable' ;
 import {makeStyle , keyHandler , handlerUp} from './EditorHandler';
@@ -20,9 +20,9 @@ const Home = ({history}) => {
     const [timerArray , setTimer] = useState([]);
     const [icon , setIcon] = useState(false) ;
     const [editor, showEditor] = useState(true) ;
-    const [PMD , showPMD] = useState(false);
-    const [terminal, showTerminal] = useState(true);
-    const [CheckStyle, showCheckStyle] = useState(false);
+    const [PMD , showPMD] = useState(false) ;
+    const [terminal, showTerminal] = useState(true) ;
+    const [CheckStyle, showCheckStyle] = useState(false) ;
 
 
     const setter = (ev) => makeStyle(ev , (data) => setContent(() => data))
@@ -150,7 +150,7 @@ const Home = ({history}) => {
                     <div style={{marginLeft:'-10px',color:'white'}}>
                         <div className="container">
                             <div className="row">
-                                <div className="col-3"style={{color:'white'}} >
+                                <div className="col-4"style={{color:'white'}} >
                                     <div style={{borderBottom: '1px solid white'}}>Project<span style={{paddingLeft:'5px' , paddingTop:'5px'}} className="fas fa-angle-down"></span></div>
                                     <div className="project-menu">
                                         <div> <span className="fas fa-caret-down"></span> Classroom</div>
@@ -198,11 +198,11 @@ const Home = ({history}) => {
                                         </div>
                                         <div className="ml-2"> <span className="fas fa-caret-right"> </span> target </div>
                                         <div className="ml-1"> <span style={{color:'deepskyblue'}} className="fab fa-medium-m"></span> pom.xml</div>
-                                        <div className="ml-2"> <span className="fas fa-caret-down"> </span> External Libraries</div>
+                                        <div className="ml-2"> <span className="fas fa-caret-right"> </span> External Libraries</div>
                                         <div className="ml-1"> <span style={{color:'gray'}} className="fas fa-terminal"> </span> Scratches and Console</div>
                                     </div>
                                 </div>
-                                <div style={{borderBottom:'1px solid gray' }} className="col-9">
+                                <div style={{borderBottom:'1px solid gray' }} className="col-8">
                                     <div className="row" style={{borderBottom:'1px solid white', paddingTop:'5px'}}>
                                         <span style={{color:'red', borderRight:'1px solid gray' , padding:'1px' , paddingRight:'10px' ,display:"block"}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> { PMD ? 'CheckPMDTest.java' : 'Classroom.java' }</span></span> 
                                     </div>
@@ -216,7 +216,7 @@ const Home = ({history}) => {
                                                     <span onClick={() => showEditor(false)} style={{top: '10px' , left:'2px'}} className="exit"></span>
                                                     <span style={{top: '10px' , left:'4px'}}  className="minimum"></span>
                                                     <span style={{top: '10px' , left:'6px'}}  className="maximum"></span>
-                                                    <span style={{paddingLeft:'90%'}}> Editor </span>
+                                                    <span style={{paddingLeft:'40%'}}> Editor </span>
                                                 </div>
                                                 <div>   
                                                     <ConetentEditable 

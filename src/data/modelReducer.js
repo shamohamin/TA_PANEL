@@ -1,4 +1,4 @@
-import { GETDATA , SET_PAGE_SIZE, POSTID } from "./Types";
+import { GETDATA , SET_PAGE_SIZE, POSTID, POST } from "./Types";
 
 export const modelReducer = (store , action) => {
     switch(action.type){
@@ -19,6 +19,11 @@ export const modelReducer = (store , action) => {
             return {
                 ...store ,
                 studentID : action.payload.studentID
+            }
+        case POST:
+            return {
+                ...store ,
+                data : action.payload.data
             }
         default:
             return store || {}

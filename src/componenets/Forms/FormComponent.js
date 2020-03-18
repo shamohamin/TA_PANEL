@@ -26,7 +26,8 @@ export class FormComponent extends React.Component {
                 student_id : {required : true , minLenght: 7 , number: true, check:true}
             },
             errorsMsg : '',
-            isSubmited : false
+            isSubmited : false, 
+            dirty: {}
         }
     }
 
@@ -37,6 +38,7 @@ export class FormComponent extends React.Component {
         event.persist();
         this.setState(state => {
             state.data[event.target.name] = event.target.value ;
+            state.dirty[event.target.name] = true ;
             return {...state}
         });
     }
@@ -58,10 +60,10 @@ export class FormComponent extends React.Component {
                 <ShowErrorMsg field={name} />
             </FormControl>
         </div>
-    } 
+    }
 
     render(){
-        return <RegisterForm data={this.state.data} rules={this.state.rules}>
+        return <RegisterForm data={this.state.data} rules={this.state.rules} dirty={this.state.dirty}>
             <div className="form-component">
                 <Navbar />
                 <div className="wrapper">

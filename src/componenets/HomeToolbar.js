@@ -1,4 +1,6 @@
 import React from 'react' ;
+import { URLS } from '../data/REST/URLS';
+import { GITURL } from '../data/Types';
 
 const listStyle = {
     listStyle : 'none' ,
@@ -38,8 +40,9 @@ export const HomeToolbar = ({runClick , setWord , setWord2, setWord3 , setWord4}
                             <li style={liStyle}> <span> ir </span> <span style={{ paddingRight:'5px' , paddingTop:'5px' }} className="fa fa-angle-right fa-xs"></span> </li>
                             <li style={liStyle}> <span> ac </span> <span style={{ paddingRight:'5px' , paddingTop:'5px' }} className="fa fa-angle-right fa-xs"></span> </li>
                             <li style={liStyle}> <span> kntu </span> <span style={{ paddingRight:'5px' , paddingTop:'5px' }} className="fa fa-angle-right fa-xs"></span> </li>
-                            <li style={listStyle}> <span style={{paddingTop:'5px'}}> Classrome.java </span> </li>
+                            <li style={listStyle}> <span style={{paddingTop:'5px'}}> Classrome.java </span> </li>                                
                         </ul>
+                        <a target="_blank" style={{float:"right" , paddingTop:'2px' , cursor:'pointer' ,color:'orange' , paddingRight : '8px'}} href={URLS[GITURL]} rel="noopener noreferrer"  arial-hidden="true"><span className="fab fa-gitlab"></span> </a>
                         <span onClick={() => updateWord()} style={{float:"right", paddingTop:'6px', cursor:'pointer' , paddingRight:'10px', color:'green'}} className="fas fa-caret-left fa-lg"></span>
                     </div>
                 </div>
