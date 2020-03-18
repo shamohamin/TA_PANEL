@@ -1,5 +1,4 @@
 import React from 'react' ;
-import logo from '../logo.svg' ;
 import '../App.css' ;
 import { PaginateConnector } from "./paginate/PaginateConnector";
 import { PaginateControl } from "./paginate/PaginateControl";
@@ -47,9 +46,8 @@ export class LeaderBoard extends React.Component {
                                         </tr>) 
                                     }
                                 </tbody>
-                            </table> </div> : <div className="text-white">
-                                    <img src={logo} className="App-logo" alt="logo" />
-                                        is_loading...........
+                            </table> </div> : <div className="leader-board text-white">
+                                <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                                 </div>
                         }
                         <div className="m-4 text-center">

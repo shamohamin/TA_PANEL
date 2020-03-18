@@ -1,5 +1,6 @@
-import {GETDATA , USERS, SET_PAGE_SIZE , POSTID} from './Types' ;
-import { RestDataSource } from "./REST/RestDataSource";
+import {GETDATA , USERS, SET_PAGE_SIZE , POSTID, POST} 
+                        from './Types' ;
+import { RestDataSource } from "./REST/RestDataSource" ;
 import {URLS} from './REST/URLS' ;
 
 export const getData = (type , params) => ({
@@ -36,6 +37,23 @@ export const postID = (studentID , successCallback , faildCallback) => ({
         })
         .catch(err => {
             faildCallback()
+            return {
+                err
+            }
+        })
+})
+
+export const postMethod = (data , successCallback, failedCallback) => ({
+    dataType: POST,
+    payload : new RestDataSource(URLS[POST]).postRequest(data)
+        .then(res => {
+            successCallback();
+            return {
+                data : data
+            }
+        })
+        .catch(err => {
+            failedCallback();
             return {
                 err
             }

@@ -15,11 +15,12 @@ export class RegisterForm extends React.Component {
             context : {
                 showErrors : this.showErrors,
                 onSubmit : this.onSubmit
-            }
+            },
+            dirty : {}
         }
     }
 
-    showErrors = (field) => typeof(this.state.errors[field]) !== "undefined" ? 
+    showErrors = (field) => (this.state.errors[field] && this.state.dirty[field]) ? 
                         this.state.errors[field] || [] : [] ;
 
     get emptyErrors(){
@@ -34,7 +35,8 @@ export class RegisterForm extends React.Component {
 
     static getDerivedStateFromProps(props){
         return {
-            errors: Validate(props.rules, props.data)
+            errors: Validate(props.rules, props.data),
+            dirty : props.dirty
         }
     }
 
@@ -49,7 +51,7 @@ export class RegisterForm extends React.Component {
     }
 
     render(){
-        console.log(this.state.errors)
+        console.log(this.state.dirty)
         return <React.Fragment>
             <FormContext.Provider value={this.state.context}>
                 {this.props.children}
