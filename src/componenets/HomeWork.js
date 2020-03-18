@@ -20,11 +20,11 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 },
                 isSubmitted : false ,
                 data :{
-                    studentId : "" ,
-                    exerciseId : 1
+                    student_id : "" ,
+                    exercise_id : 1
                 },
                 rules : {
-                    studentId : {
+                    student_id : {
                         required : true ,
                         number : true ,
                         minLenght : 7,
@@ -101,14 +101,14 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                     <div className="label pb-2 ml-1">  StudentID :</div>
                                     <div className="row">
                                         <div className="col-9">
-                                        <input className="form-control input ml-3" type="text" value={this.state.data.studentId}
-                                                placeholder="StudentID" name="studentId"
+                                        <input className="form-control input ml-3" type="text" value={this.state.data.student_id}
+                                                placeholder="StudentID" name="student_id"
                                                 onChange = {(event) => this.onChange(event)} />
                                         </div>
                                         <div className="col-2 loading"><div></div><div></div><div></div></div>
                                     </div>
                                     {
-                                        this.state.dirty["studentId"] && this.state.errors.studentId.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
+                                        this.state.dirty["student_id"] && this.state.errors.student_id.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
                                             {item}
                                         </div>)    
                                     }
