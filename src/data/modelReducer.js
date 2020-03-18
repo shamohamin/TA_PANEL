@@ -18,7 +18,8 @@ export const modelReducer = (store , action) => {
         case POSTID:
             return {
                 ...store ,
-                studentID : action.payload.studentID
+                web_url : action.payload.web_url,
+                name : action.payload.name
             }
         case POST:
             return {

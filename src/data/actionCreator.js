@@ -32,7 +32,8 @@ export const postID = (studentID , successCallback , faildCallback) => ({
         .then(res => {
             successCallback()
             return {
-                studentID : studentID
+                url : res.data.web_url,
+                name : res.data.name
             }
         })
         .catch(err => {

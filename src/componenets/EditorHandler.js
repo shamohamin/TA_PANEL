@@ -8,11 +8,11 @@ export const keyboards = ["abstract" , "assert" , "while" , "volatile" ,
         "class" ,"return" , "new" , "if", "while" , "switch", "case" , "for" , ";" ,','] ;
 
 export const makeStyle = (event , setContent) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     let value = event.target.value ;
     let contentArr = value.split(/\s+/) ;
 
-    console.log(contentArr)
+    // console.log(contentArr)
     
     for(let i = 0 ; i < contentArr.length ;i++){
         if(keyboards.includes(contentArr[i])){
@@ -38,7 +38,7 @@ export const keyHandler = (event , setContent) => {
 export const handlerUp = (event , setContent) => {
     if(event.which === 13 || event.key === "Enter"){
         setContent((state) => {
-            console.log(state)
+            // console.log(state)
             return state.concat("<br/>&nbsp;")
         })
         
@@ -48,7 +48,7 @@ export const handlerUp = (event , setContent) => {
 export const keyPressed = (event , setContent) => {
     event.persist();
     setContent(state => {
-        console.log(event.which)
+        // console.log(event.which)
         if(state.length === 92 && event.which === 8){
             event.preventDefault();
         }
