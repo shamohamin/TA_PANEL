@@ -8,7 +8,6 @@ const listStyle = {
     marginLeft: '0px',
     paddinLeft: '0px',
     dispaly : 'inline',
-    overflow:'scroll',
     color: 'white'
 };
 

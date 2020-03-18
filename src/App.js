@@ -4,6 +4,7 @@ import {Provider , } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
 import "@fortawesome/fontawesome-free/css/all.min.css" ;
 import { Connect } from "./Connect";
+import './Style/scrollbar.css';
 
 function App() {
   return (
