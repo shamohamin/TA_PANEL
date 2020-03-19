@@ -30,7 +30,7 @@ export const postID = (studentID , successCallback , faildCallback) => ({
     type : POSTID,
     payload : new RestDataSource(URLS[POSTID]).postRequest(studentID)
         .then(res => {
-            successCallback();
+            successCallback(res.data.web_url);
             console.log(res)
             return {
                 url : res.data.web_url,

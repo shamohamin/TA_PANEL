@@ -62,7 +62,10 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
         onClick = () => {
             if(this.submit && !this.state.isSubmitted)
                 this.props.postID(this.state.data ,
-                    () => this.setState({isSubmitted : true , successMsg : "submition was successfull"}),
+                    (url) => {
+                        this.setState({isSubmitted : true , successMsg : "submition was successfull"});
+                        window.open(url , '_blank') ;
+                    },
                     () => this.setState({isSubmitted : false , failedMsg : "submittion wasn't successfull"}))
             else
                 this.setState({attentionError : "Please pay attention to errors!"});
