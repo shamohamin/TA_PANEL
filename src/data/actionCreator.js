@@ -31,14 +31,14 @@ export const postID = (studentID , successCallback , faildCallback) => ({
     payload : new RestDataSource(URLS[POSTID]).postRequest(studentID)
         .then(res => {
             successCallback(res.data.web_url);
-            console.log(res)
             return {
                 url : res.data.web_url,
                 name : res.data.name
             }
         })
         .catch(err => {
-            faildCallback()
+            console.log(err.response.data);
+            faildCallback(err.response.data);
             return {
                 err
             }

@@ -66,7 +66,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                         this.setState({isSubmitted : true , successMsg : "submition was successfull"});
                         window.open(url , '_blank') ;
                     },
-                    () => this.setState({isSubmitted : false , failedMsg : "submittion wasn't successfull"}))
+                    (message) => this.setState({isSubmitted : false , failedMsg : message}))
             else
                 this.setState({attentionError : "Please pay attention to errors!"});
         }
