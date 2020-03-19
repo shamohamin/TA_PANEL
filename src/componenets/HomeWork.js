@@ -64,19 +64,22 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             const student_id = JSON.parse(localStorage.getItem('student_id')) ;
             if( URL === null || student_id === null ||
                                         student_id !== this.state.data.student_id){
-                if(this.submit && !this.state.isSubmitted)
+                if(this.submit && !this.state.isSubmitted){
                     this.props.postID(this.state.data ,
                         (url) => {
-                            this.setState({isSubmitted : true , successMsg : "submition was successfull"});
+                            this.setState({isSubmitted : true , successMsg : "submition was successful",
+                                        failedMsg:'' , attentionError : ''});
                             localStorage.setItem('url',JSON.stringify(url));
                             localStorage.setItem('student_id', JSON.stringify(this.state.data.student_id));
                             localStorage.setItem('exercise_id', JSON.stringify(this.state.data.exercise_id));
                             window.open(url , '_blank') ;
                         },
                         (message) => this.setState({isSubmitted : false , failedMsg : message}))
-                else
+                }else{
                     this.setState({attentionError : "Please pay attention to errors!"});
+                }
             }else{
+                this.setState({successMsg : "submition was successful", failedMsg:'' , attentionError:''});
                 window.open(JSON.parse(localStorage.getItem('url')), '_blank') ;
             }
         }
