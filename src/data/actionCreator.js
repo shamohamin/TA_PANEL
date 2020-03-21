@@ -37,10 +37,20 @@ export const postID = (studentID , successCallback , faildCallback) => ({
             }
         })
         .catch(err => {
-            // console.log(err.response.data);
-            faildCallback(err.response.data);
-            return {
-                err
+            try {
+                if(typeof(err.response) === "undefined" ||
+                    typeof(err.response.data) === "undefined"){
+                    throw(new Error(err));
+                }
+                // console.log(err.response.data);
+                faildCallback(err.response.data);
+            }catch(ex){
+                console.log(ex);
+                faildCallback("Something Went Wrong Please Inform To One Of Your Instructors");
+            }finally {
+                return {
+                    err
+                }
             }
         })
 })

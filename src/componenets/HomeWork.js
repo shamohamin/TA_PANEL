@@ -21,6 +21,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 }))(class extends React.Component {
         constructor(props){
             super(props) ;
+            
             this.URL = "https://docs.google.com/document/d/1ZPubRSGbcgG5qcjh7BWdggY4jjAvauMACQnnyNc7xIw/edit";
             this.state = {
                 
@@ -47,7 +48,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 successMsg : "",
                 failedMsg : "",
                 dirty : {},
-                submitText : localStorage.getItem('url') === undefined ? "Please Insert Your StudentID To Build Your Starter Repo" : 'Your Starter Repo Have Been Built Please Insert Your StudentID To Redirect' 
+                submitText : localStorage.getItem('url') === null ? "Please Insert Your StudentID To Build Your Starter Repo" : 'Your Starter Repo Has Been Built Please Insert Your StudentID To Redirect' 
             }
         }
 
@@ -102,17 +103,25 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                 localStorage.setItem('exercise_id', JSON.stringify(this.state.data.exercise_id));
                                 window.open(url , '_blank') ;
                             },
-                            (message) => this.setState({isSubmitted : false , failedMsg : message}));
+                            (message) => {
+                                this.setState({isSubmitted : false , failedMsg : message , successMsg:''})
+                                
+                            });
                     }catch(ex){
                         this.forceUpdate();
                     }
                 }else{
                     this.setState({attentionError : "Please pay attention to errors!",successMsg:''});
+                    
                 }
             }else{
                 this.setState({successMsg : "submition was successful", failedMsg:'' , attentionError:''});
                 window.open(JSON.parse(localStorage.getItem('url')), '_blank') ;
             }
+            window.scrollTo({
+                top : 0,
+                behavior : "smooth"
+            });
         }
 
         static getDerivedStateFromProps(props , state){
@@ -128,7 +137,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 <div>
                     <Navbar />
                 </div>
-                <div className="main">
+                <div style={{scrollBehavior:'smooth'}} className="main">
                     <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px' }}>
                         <div className="card card-animation"  style={{width:'100%'}}>
                             <div className="card-header text-center head">
