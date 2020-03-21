@@ -55,7 +55,7 @@ export class Navbar extends React.Component {
                                 name="Register" />
                 </li>
                 <li>
-                    <a target="_blank" style={{float:"left", marginLeft:'4px' , paddingTop:'4px', marginTop:'6px' , cursor:'pointer' ,color:'orange' , paddingRight : '8px'}} href={URLS[GITURL]} rel="noopener noreferrer"  arial-hidden="true"><span className="fab fa-gitlab"></span> </a>
+                    <a target="_blank" style={{float:"left", marginLeft:'4px' , paddingTop:'4px', marginTop:'6px' , cursor:'pointer' ,color:'orange' , paddingRight : '8px'}} href={URLS[GITURL]} rel="noopener noreferrer"  arial-hidden="true"><span className="fab fa-gitlab"><span style={{paddingRight:'2px'}}> Gitlab </span></span> </a>
                 </li>
             </ul>
         </div>

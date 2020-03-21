@@ -243,7 +243,7 @@ const Home = ({history}) => {
                                     <div className="row" style={{borderBottom:'1px solid white', paddingTop:'5px'}}>
                                         <span style={{color:'red', borderRight:'1px solid gray' , padding:'1px' , paddingRight:'10px' ,display:"block"}} className="fab fa-java"><span style={{color:'white', fontSize:'17px'}}> { PMD ? 'CheckPMDTest.java' : 'Classroom.java' }</span></span> 
                                     </div>
-                                    <div style={{height:'400px',overflowY:'scroll', overflowX:'scroll'}}>
+                                    <div style={{height:'400px',width:'100%',overflowY:'scroll', overflowX:'scroll'}}>
                                         <div style={{paddingTop: '10p',}}>
                                             {chooseContent()}
                                         </div>

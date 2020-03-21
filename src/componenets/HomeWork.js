@@ -32,7 +32,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 isSubmitted : false ,
                 data :{
                     student_id : "" ,
-                    exercise_id : 1
+                    exercise_id : 3
                 },
                 rules : {
                     student_id : {
@@ -46,7 +46,8 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 attentionError : "",
                 successMsg : "",
                 failedMsg : "",
-                dirty : {}
+                dirty : {},
+                submitText : localStorage.getItem('url') === undefined ? "Please Insert Your StudentID To Build Your Starter Repo" : 'Your Starter Repo Have Been Built Please Insert Your StudentID To Redirect' 
             }
         }
 
@@ -128,7 +129,6 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                     <Navbar />
                 </div>
                 <div className="main">
-                
                     <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px' }}>
                         <div className="card card-animation"  style={{width:'100%'}}>
                             <div className="card-header text-center head">
@@ -139,7 +139,8 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                     <div className="h3 alert-success text-center">{this.state.successMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.failedMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.attentionError}</div>
-                                    <div className="text-center">You Can Also Read HomeWork In Google Docs <br /> <a rel="no-refrence" href={this.URL}>
+                                    <div className="text-center">You Can Also Read HomeWork In Google Docs <br />
+                                        <a style={{fontSize : '3vw'}} rel="no-refrence" href={this.URL}>
                                         GOOGLE DOC
                                         </a></div>
                                     <hr className="ml-4 mr-4"/>
@@ -160,26 +161,34 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                                     }}  />
                                 </div>
                                 <hr />
-                                <div className="col-6 bg-transparent">
-                                    <div className="label pb-2 ml-1">  StudentID :</div>
-                                    <div className="row">
-                                        <div className="col-9">
-                                        <input className="form-control input ml-1" type="text" value={this.state.data.student_id}
-                                                placeholder="StudentID" name="student_id"
-                                                onChange = {(event) => this.onChange(event)} />
-                                        </div>
-                                        <div className="col-2 loading"><div></div><div></div><div></div></div>
-                                    </div>
-                                    {
-                                        this.state.dirty["student_id"] && this.state.errors.student_id.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
-                                            {item}
-                                        </div>)    
-                                    }
+                                <div>
+                                    <div className="pl-1 h2 text-danger">Attention:</div>
                                     <div>
-                                        <button className="btn mt-2 ml-1 btn-primary" 
-                                                onClick={() => this.onClick()}>
-                                            Submit
-                                        </button>
+                                    <p className="pl-1 pb-2 h3">{this.state.submitText}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-7 bg-transparent">
+                                        <div className="label pb-2 ml-1">  StudentID :</div>
+                                        <div className="row">
+                                            <div className="col-9">
+                                            <input className="form-control input ml-1" type="text" value={this.state.data.student_id}
+                                                    placeholder="StudentID" name="student_id"
+                                                    onChange = {(event) => this.onChange(event)} />
+                                            </div>
+                                            <div className="col-2 loading"><div></div><div></div><div></div></div>
+                                        </div>
+                                        {
+                                            this.state.dirty["student_id"] && this.state.errors.student_id.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
+                                                {item}
+                                            </div>)    
+                                        }
+                                        <div>
+                                            <button className="btn mt-2 ml-1 btn-primary" 
+                                                    onClick={() => this.onClick()}>
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

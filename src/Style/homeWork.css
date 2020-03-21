@@ -155,3 +155,7 @@
     unicode-bidi: embed;
     text-align: right;
 }
+
+.homework-component .main [class^=""]{
+
+}

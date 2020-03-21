@@ -230,3 +230,12 @@
     75%{left: 40% ;top: 70px; width: 25%;height: 25px;border-radius: 50%;background-color: #282c34;}
     100%{left: 50%;top: 100px;width: 0;height: 0;border-radius: 50%;border: none;background-color: #282c34;}
 }
+
+.home-component .container-made [class^="container"] {
+    margin: auto;
+    max-width: 1500px;
+}
+
+.home-component .container-made [class^="row"] {
+    margin:0;
+}
