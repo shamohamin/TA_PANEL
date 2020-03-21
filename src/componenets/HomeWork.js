@@ -10,9 +10,9 @@ import ContentEditableEvent from 'react-contenteditable';
 import {HomeWork3} from './contents/HomeWork3';
 
 const imageStyle = {
-    image1 : 'width: 155.50px; height: 105.59px; margin-left: 0.00px; margin-top: 2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);direction:ltr;text-align:left',
-    image2 : "width: 417.50px; height: 417.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
-    image3 : "width: 272.00px; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+    image1 : 'width: 155.50px; height: 105.59px; margin-left: 0.00px; margin-top: 2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);',
+    image2 : "min-width:50%; height: 417.50px; margin-left: 100.00px; margin-top: 2.00px;transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
+    image3 : "float:left; width: 100%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
 }
 
 
@@ -21,8 +21,9 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 }))(class extends React.Component {
         constructor(props){
             super(props) ;
-            
+            this.URL = "https://docs.google.com/document/d/1ZPubRSGbcgG5qcjh7BWdggY4jjAvauMACQnnyNc7xIw/edit";
             this.state = {
+                
                 homework : {
                     description : HomeWork3 ,
                     title : "HomeWork3" ,
@@ -51,7 +52,6 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
 
         componentDidMount(){
-            
             document.querySelector(".image1").appendChild(this.makeImg('./images/image3.png',imageStyle.image1));
             document.querySelector(".image2").appendChild(this.makeImg('./images/image1.png',imageStyle.image2));
             document.querySelector(".image3").appendChild(this.makeImg('./images/image2.jpg',imageStyle.image3));
@@ -91,18 +91,22 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             if( URL === null || student_id === null ||
                                         student_id !== this.state.data.student_id){
                 if(this.submit && !this.state.isSubmitted){
-                    this.props.postID(this.state.data ,
-                        (url) => {
-                            this.setState({isSubmitted : true , successMsg : "submition was successful",
-                                        failedMsg:'' , attentionError : ''});
-                            localStorage.setItem('url',JSON.stringify(url));
-                            localStorage.setItem('student_id', JSON.stringify(this.state.data.student_id));
-                            localStorage.setItem('exercise_id', JSON.stringify(this.state.data.exercise_id));
-                            window.open(url , '_blank') ;
-                        },
-                        (message) => this.setState({isSubmitted : false , failedMsg : message}))
+                    try{
+                        this.props.postID(this.state.data ,
+                            (url) => {
+                                this.setState({isSubmitted : true , successMsg : "submition was successful",
+                                            failedMsg:'' , attentionError : ''});
+                                localStorage.setItem('url',JSON.stringify(url));
+                                localStorage.setItem('student_id', JSON.stringify(this.state.data.student_id));
+                                localStorage.setItem('exercise_id', JSON.stringify(this.state.data.exercise_id));
+                                window.open(url , '_blank') ;
+                            },
+                            (message) => this.setState({isSubmitted : false , failedMsg : message}));
+                    }catch(ex){
+                        this.forceUpdate();
+                    }
                 }else{
-                    this.setState({attentionError : "Please pay attention to errors!"});
+                    this.setState({attentionError : "Please pay attention to errors!",successMsg:''});
                 }
             }else{
                 this.setState({successMsg : "submition was successful", failedMsg:'' , attentionError:''});
@@ -118,7 +122,6 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
 
         render(){
-            console.log(this.state.homework.description)
 
             return <div className="homework-component">
                 <div>
@@ -128,7 +131,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 
                     <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px' }}>
                         <div className="card card-animation"  style={{width:'100%'}}>
-                            <div className="card-header  text-center head">
+                            <div className="card-header text-center head">
                                 {this.state.homework.title}
                             </div>
                             <div className="card-body bg-transparent" style={{backgroundColor : 'transparent'}}>
@@ -136,6 +139,9 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                     <div className="h3 alert-success text-center">{this.state.successMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.failedMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.attentionError}</div>
+                                    <div className="text-center">You Can Also Read HomeWork In Google Docs <br /> <a rel="no-refrence" href={this.URL}>
+                                        GOOGLE DOC
+                                        </a></div>
                                     <hr className="ml-4 mr-4"/>
                                     <ContentEditableEvent lang="fa-IR" style={{textAlign:'right'}} dir="rtl" className="text p-2 text-box" 
                                                     onMouseDown={(event) => {

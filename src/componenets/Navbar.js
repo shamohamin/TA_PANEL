@@ -3,6 +3,8 @@ import "bootstrap/js/src/collapse.js";
 // import Sidebar from 'react-sidebar';
 import {ToggleLink} from './ToggleLink' ;
 // import {inlineStyle} from '../Style/navBarStyle'
+import {GITURL} from '../data/Types';
+import {URLS} from '../data/REST/URLS';
 
 const mql = window.matchMedia(`(min-width: 700px)`);
 
@@ -51,6 +53,9 @@ export class Navbar extends React.Component {
                 <li className="nav-item">
                     <ToggleLink to="/register" exact={true}
                                 name="Register" />
+                </li>
+                <li>
+                    <a target="_blank" style={{float:"left", marginLeft:'4px' , paddingTop:'4px', marginTop:'6px' , cursor:'pointer' ,color:'orange' , paddingRight : '8px'}} href={URLS[GITURL]} rel="noopener noreferrer"  arial-hidden="true"><span className="fab fa-gitlab"></span> </a>
                 </li>
             </ul>
         </div>

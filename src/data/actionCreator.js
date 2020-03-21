@@ -37,7 +37,7 @@ export const postID = (studentID , successCallback , faildCallback) => ({
             }
         })
         .catch(err => {
-            console.log(err.response.data);
+            // console.log(err.response.data);
             faildCallback(err.response.data);
             return {
                 err
