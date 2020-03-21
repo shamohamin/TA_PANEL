@@ -5,14 +5,12 @@ import { Navbar } from './Navbar';
 import { connect } from 'react-redux';
 import { postID } from "../data/actionCreator";
 import ContentEditableEvent from 'react-contenteditable';
-// import Axios from "axios";
-// import { GoogleSpreadsheet } from "google-spreadsheet";
 import {HomeWork3} from './contents/HomeWork3';
 
 const imageStyle = {
     image1 : 'width: 155.50px; height: 105.59px; margin-left: 0.00px; margin-top: 2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);',
-    image2 : "min-width:50%; height: 417.50px; margin-left: 100.00px; margin-top: 2.00px;transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
-    image3 : "float:left; width: 100%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+    image2 : "max-width:50%; height: 417.50px; margin-left: 100.00px; margin-top: 2.00px;transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
+    image3 : " max-width: 80%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
 }
 
 
@@ -66,7 +64,6 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             return img1 ;
         }
 
-
         get submit(){
             let ok = true ;
             
@@ -112,7 +109,6 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                     }
                 }else{
                     this.setState({attentionError : "Please pay attention to errors!",successMsg:''});
-                    
                 }
             }else{
                 this.setState({successMsg : "submition was successful", failedMsg:'' , attentionError:''});
