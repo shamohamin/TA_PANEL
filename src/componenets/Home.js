@@ -23,10 +23,45 @@ const Home = ({history}) => {
     const [PMD , showPMD] = useState(false) ;
     const [terminal, showTerminal] = useState(true) ;
     const [CheckStyle, showCheckStyle] = useState(false) ;
-
+    const [mininize , setMinimize] = useState(false) ;
 
     const setter = (ev) => makeStyle(ev , (data) => setContent(() => data))
 
+
+    const renderEditor = () => {
+        if(editor){
+            return <div className="editor">
+                <div className="editor-header">
+                    <span onClick={() => showEditor(false)} style={{top: '10px' , left:'2px'}} className="exit"></span>
+                    <span onClick={() => {
+                            showEditor(false) ;
+                            setMinimize(true) ;
+                        }} style={{top: '10px' , left:'4px', cursor:'pointer'}}  className="minimum"></span>
+                    <span style={{top: '10px' , left:'6px'}}  className="maximum"></span>
+                    <span style={{paddingLeft:'40%'}}> Editor </span>
+                </div>
+                <div>   
+                    <ConetentEditable 
+                        className="content-editable"
+                        html={content}
+                        onChange={(ev) => setter(ev) }
+                        onKeyDown={(ev) => keyHandler(ev , setContent)}
+                        onKeyUp={ev => handlerUp(ev , setContent) }/>
+                </div>
+            </div>
+        }else if(mininize){
+            return <div onClick={() => {
+                setMinimize(false);
+                showEditor(true) ;
+            }} className="editor-minimize">
+                <div className="editor-minimize-icon">
+                    Editor
+                </div>
+            </div>
+        }else{
+            return <div className="exit-animation"><div></div></div>
+        }
+    }
 
     const updateWord = () => {
         const JAVAWORD = "public class Classroom {";
@@ -183,8 +218,10 @@ const Home = ({history}) => {
                                                                 showEditor(false);
                                                                 showPMD(true);
                                                                 showCheckStyle(false);
+                                                                setMinimize(false) ;
                                                             }} style={{color:'white', fontSize:'17px'}}> CheckPMDTest.java </span></span> 
                                                             <span onClick={() => {
+                                                                setMinimize(false); 
                                                                 showEditor(false);
                                                                 showCheckStyle(true);
                                                                 showPMD(false);
@@ -210,24 +247,7 @@ const Home = ({history}) => {
                                         <div style={{paddingTop: '10p',}}>
                                             {chooseContent()}
                                         </div>
-                                        {!editor ? <div></div> :
-                                            <div className="editor">
-                                                <div className="editor-header">
-                                                    <span onClick={() => showEditor(false)} style={{top: '10px' , left:'2px'}} className="exit"></span>
-                                                    <span style={{top: '10px' , left:'4px'}}  className="minimum"></span>
-                                                    <span style={{top: '10px' , left:'6px'}}  className="maximum"></span>
-                                                    <span style={{paddingLeft:'40%'}}> Editor </span>
-                                                </div>
-                                                <div>   
-                                                    <ConetentEditable 
-                                                        className="content-editable"
-                                                        html={content}
-                                                        onChange={(ev) => setter(ev) }
-                                                        onKeyDown={(ev) => keyHandler(ev , setContent)}
-                                                        onKeyUp={ev => handlerUp(ev , setContent) }/>
-                                                </div>
-                                            </div>
-                                        }
+                                        {renderEditor()}
                                     </div>
                                 </div>
                             </div>

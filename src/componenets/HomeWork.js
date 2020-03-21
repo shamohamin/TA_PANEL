@@ -103,7 +103,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                             <div className="card-header  text-center head">
                                 {this.state.homework.title}
                             </div>
-                            <div className="card-body ">
+                            <div className="card-body bg-transparent" style={{backgroundColor : 'transparent'}}>
                                 <div className="wrapper">
                                     <div className="h3 alert-success text-center">{this.state.successMsg}</div>
                                     <div className="h3 alert-danger text-center">{this.state.failedMsg}</div>
@@ -113,11 +113,11 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                     <p className="card-text text p-2">{this.state.homework.description}</p>
                                 </div>
                                 <hr />
-                                <div className="col-6">
+                                <div className="col-6 bg-transparent">
                                     <div className="label pb-2 ml-1">  StudentID :</div>
                                     <div className="row">
                                         <div className="col-9">
-                                        <input className="form-control input ml-3" type="text" value={this.state.data.student_id}
+                                        <input className="form-control input ml-1" type="text" value={this.state.data.student_id}
                                                 placeholder="StudentID" name="student_id"
                                                 onChange = {(event) => this.onChange(event)} />
                                         </div>
@@ -129,7 +129,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                                         </div>)    
                                     }
                                     <div>
-                                        <button className="btn mt-2 btn-primary" 
+                                        <button className="btn mt-2 ml-1 btn-primary" 
                                                 onClick={() => this.onClick()}>
                                             Submit
                                         </button>
