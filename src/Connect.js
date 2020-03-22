@@ -34,6 +34,8 @@ export class Connect extends React.Component {
 
 
     render(){
+        document.getElementsByTagName("META")[3].content="Advance Programming with Java";
+        console.log(document.getElementsByTagName("META")[3].content);
         return <HashRouter>
             <Switch>
                 <Route path="/:section/:page?/" render = {routeProps => 
