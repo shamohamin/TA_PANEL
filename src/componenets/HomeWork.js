@@ -7,12 +7,12 @@ import { postID } from "../data/actionCreator";
 import ContentEditableEvent from 'react-contenteditable';
 import {HomeWork3} from './contents/HomeWork3';
 
+
 const imageStyle = {
     image1 : 'width: 155.50px; height: 105.59px; margin-left: 0.00px; margin-top: 2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);',
     image2 : "max-width:50%; height: 417.50px; margin-left: 100.00px; margin-top: 2.00px;transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
-    image3 : " max-width: 80%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+    image3 : " max-width: 70%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
 }
-
 
 export const HomeWork = connect( () => ({}) , dispatch => ({
     postID : (id, successCallback, failedCallback) => dispatch(postID(id, successCallback, failedCallback))
@@ -52,6 +52,24 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
 
         componentDidMount(){
+            // const doc = new GoogleSpreadsheet("1Ye52nxkRCFu-NeMe0pzR1SfK-UmAU5rBx_NfTVEUaSo");
+            // await doc.useServiceAccountAuth(require('../credentials.json'));
+            // doc.useApiKey('AIzaSyC1fkfIMB950m_Pzur5bTLz2ABDg7YFMLI');
+            // const data = await doc.getInfo();
+            // console.log(data);
+            // console.log(JSON.parse(await require('../credentials.json')))
+            // const {client_secret, client_id, redirect_uris} = 
+            //                 JSON.parse(require('../credentials.json')).installed;
+            // const oAuth2Client = await new google.auth.OAuth2(client_id ,client_secret , redirect_uris[0]);
+            
+            // const docs = google.docs({version : 'v1' , oAuth2Client});
+            // docs.documents.get({
+            //     documentId: '1Ye52nxkRCFu-NeMe0pzR1SfK-UmAU5rBx_NfTVEUaSo'
+            // },(err , res) => {
+            //     if(err) console.log(`api Error ${err}`);
+            //     console.log(res.data) ;
+            // });
+            // gapi
             document.querySelector(".image1").appendChild(this.makeImg('./images/image3.png',imageStyle.image1));
             document.querySelector(".image2").appendChild(this.makeImg('./images/image1.png',imageStyle.image2));
             document.querySelector(".image3").appendChild(this.makeImg('./images/image2.jpg',imageStyle.image3));
@@ -129,7 +147,7 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
 
         render(){
 
-            return <div className="homework-component">
+            return <div style={{scrollBehavior:'smooth'}} className="homework-component">
                 <div>
                     <Navbar />
                 </div>

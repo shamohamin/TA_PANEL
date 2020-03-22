@@ -5,6 +5,7 @@
     z-index: 1;
     border-top: red ;
     border-width: 20px;
+    scroll-behavior: smooth;
     
 }
 
@@ -154,8 +155,4 @@
     direction: rtl;
     unicode-bidi: embed;
     text-align: right;
-}
-
-.homework-component .main [class^=""]{
-
 }

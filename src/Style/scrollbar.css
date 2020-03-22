@@ -1,5 +1,6 @@
 ::-webkit-scrollbar {
   width: 7px;
+  behavior: smooth;
 } 
 ::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -7,7 +8,7 @@
    
   /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: gray; 
+  background: gray;
   border-radius: 10px;
 }
   
