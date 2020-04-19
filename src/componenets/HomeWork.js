@@ -4,25 +4,27 @@ import '../Style/homeWork.css';
 import { Navbar } from './Navbar';
 import { connect } from 'react-redux';
 import { postID } from "../data/actionCreator";
-import ContentEditableEvent from 'react-contenteditable';
 import {HomeWork3} from './contents/HomeWork3';
+import { ToggleLink } from "./ToggleLink";
+import $ from 'jquery';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { PROJECTPOSTID, HOMEWORKPOSTID } from '../data/Types';
+import { withRouter } from "react-router-dom";
 
-
-const imageStyle = {
-    image1 : 'width: 155.50px; height: 105.59px; margin-left: 0.00px; margin-top: 2.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);',
-    image2 : "max-width:50%; height: 417.50px; margin-left: 100.00px; margin-top: 2.00px;transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);",
-    image3 : " max-width: 70%; height: 333.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-}
-
-export const HomeWork = connect( () => ({}) , dispatch => ({
-    postID : (id, successCallback, failedCallback) => dispatch(postID(id, successCallback, failedCallback))
+export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
+    postID : (id, successCallback, failedCallback, type) => dispatch(postID(id, successCallback, failedCallback,type))
 }))(class extends React.Component {
         constructor(props){
             super(props) ;
             
-            this.URL = "https://docs.google.com/document/d/1ZPubRSGbcgG5qcjh7BWdggY4jjAvauMACQnnyNc7xIw/edit";
             this.state = {
-                
+                type : PROJECTPOSTID ,
+                card : props.card,
+                PROJECTURL : 'https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing',
+                HOMEWORKURL : 'https://docs.google.com/document/d/1H1k_2Is_pshtb6KgJ_tjcVNOo8BBcSXA_mnDVM62dcc/edit?usp=sharing',
+                projectURL : 'https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing' ,
                 homework : {
                     description : HomeWork3 ,
                     title : "HomeWork3" ,
@@ -41,45 +43,14 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                         check : true
                     }
                 } ,
-                errors : {} ,
+                errors : {
+                    student_id : []
+                } ,
                 attentionError : "",
                 successMsg : "",
                 failedMsg : "",
                 dirty : {},
-                submitText : localStorage.getItem('url') === null ? "Please Insert Your StudentID To Build Your Starter Repo" : 'Your Starter Repo Has Been Built Please Insert Your StudentID To Redirect' 
             }
-        }
-
-
-        componentDidMount(){
-            // const doc = new GoogleSpreadsheet("1Ye52nxkRCFu-NeMe0pzR1SfK-UmAU5rBx_NfTVEUaSo");
-            // await doc.useServiceAccountAuth(require('../credentials.json'));
-            // doc.useApiKey('AIzaSyC1fkfIMB950m_Pzur5bTLz2ABDg7YFMLI');
-            // const data = await doc.getInfo();
-            // console.log(data);
-            // console.log(JSON.parse(await require('../credentials.json')))
-            // const {client_secret, client_id, redirect_uris} = 
-            //                 JSON.parse(require('../credentials.json')).installed;
-            // const oAuth2Client = await new google.auth.OAuth2(client_id ,client_secret , redirect_uris[0]);
-            
-            // const docs = google.docs({version : 'v1' , oAuth2Client});
-            // docs.documents.get({
-            //     documentId: '1Ye52nxkRCFu-NeMe0pzR1SfK-UmAU5rBx_NfTVEUaSo'
-            // },(err , res) => {
-            //     if(err) console.log(`api Error ${err}`);
-            //     console.log(res.data) ;
-            // });
-            // gapi
-            document.querySelector(".image1").appendChild(this.makeImg('./images/image3.png',imageStyle.image1));
-            document.querySelector(".image2").appendChild(this.makeImg('./images/image1.png',imageStyle.image2));
-            document.querySelector(".image3").appendChild(this.makeImg('./images/image2.jpg',imageStyle.image3));
-        }
-
-        makeImg = (url,style) => {
-            const img1 = document.createElement("img");
-            img1.setAttribute('src' , require(`${url}`));
-            img1.setAttribute('style',style);
-            return img1 ;
         }
 
         get submit(){
@@ -93,6 +64,10 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
             return ok ;
         }
 
+        componentDidMount(){
+            console.log('componenet did mount')
+        }
+
         onChange = (event) => {
             event.persist() ;
             this.setState(state => {
@@ -103,34 +78,23 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
         }
 
         onClick = () => {
-            const URL = JSON.parse(localStorage.getItem('url')) ;
-            const student_id = JSON.parse(localStorage.getItem('student_id')) ;
-            if( URL === null || student_id === null ||
-                                        student_id !== this.state.data.student_id){
-                if(this.submit && !this.state.isSubmitted){
-                    try{
-                        this.props.postID(this.state.data ,
-                            (url) => {
-                                this.setState({isSubmitted : true , successMsg : "submition was successful",
-                                            failedMsg:'' , attentionError : ''});
-                                localStorage.setItem('url',JSON.stringify(url));
-                                localStorage.setItem('student_id', JSON.stringify(this.state.data.student_id));
-                                localStorage.setItem('exercise_id', JSON.stringify(this.state.data.exercise_id));
-                                window.open(url , '_blank') ;
-                            },
-                            (message) => {
-                                this.setState({isSubmitted : false , failedMsg : message , successMsg:''})
-                                
-                            });
-                    }catch(ex){
-                        this.forceUpdate();
-                    }
-                }else{
-                    this.setState({attentionError : "Please pay attention to errors!",successMsg:''});
+            
+            if(this.submit && !this.state.isSubmitted){
+                try{
+                    this.props.postID(this.state.data ,
+                        (url) => {
+                            this.setState({isSubmitted : true , successMsg : "submition was successful",
+                                        failedMsg:'' , attentionError : ''});
+                            window.open(url , '_blank') ;
+                        },
+                        (message) => {
+                            this.setState({isSubmitted : false , failedMsg : message , successMsg:''})                
+                        }, this.state.type);
+                }catch(ex){
+                    this.forceUpdate();
                 }
             }else{
-                this.setState({successMsg : "submition was successful", failedMsg:'' , attentionError:''});
-                window.open(JSON.parse(localStorage.getItem('url')), '_blank') ;
+                this.setState({attentionError : "Please pay attention to errors!",successMsg:''});
             }
             window.scrollTo({
                 top : 0,
@@ -139,11 +103,78 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
         }
 
         static getDerivedStateFromProps(props , state){
-            return {
-                errors : Validate(state.rules , state.data)
+            const {card} = props;
+            return {...state,
+                card : card ,
+                rules : state.rules,
+                data : {
+                    student_id : card !== state.card ? '' : state.data.student_id,
+                },
+                projectURL : card === "project" ? 
+                    state.PROJECTURL : state.HOMEWORKURL ,
+                type : card === "project" ? PROJECTPOSTID : HOMEWORKPOSTID,
+                attentionError : card !== state.card ? ' ' : state.attentionError,
+                successMsg : card !== state.card ? ' ' : state.successMsg,
+                failedMsg : card !== state.card ? ' ' : state.failedMsg,
+                errors : card !== state.card ? {student_id : []} : 
+                        Validate(state.rules , state.data)
             }
         }
 
+        onToggle = () => {
+            $('.aside > div').toggle('slow');
+            $('.aside > p > span').toggleClass('fa-caret-right') ;
+        }
+
+        makeContent = (title) => {
+            return <div className="homework-component box">
+                <div style={{textAlign:'center', fontSize:'2em'}}>{title}</div><hr color="yellow" />
+                <div className="text-center text-danger">
+                    {this.state.attentionError}
+                </div>
+                <div className="text-center text-danger">
+                    {this.state.failedMsg}
+                </div>
+                <div className="text-center text-success">
+                    {this.state.successMsg}
+                </div>
+                <a rel="noopener noreferrer" href={this.state.projectURL} target="_blank"
+                    className="homework-component doc">
+                    {`${title} Doc`}
+                </a>
+                <div style={{marginTop:'50px'}}>
+                    <div className="row">
+                        <div className="col-6">
+                            <FormControl fullWidth >
+                                <InputLabel style={{color:'white'}} htmlFor={"student_id"}>StudentID</InputLabel>
+                                <Input onChange={this.onChange}
+                                        autoFocus={true}
+                                        style={{color:'white'}}
+                                        type="text"
+                                        value={this.state.data.student_id}
+                                        name={"student_id"}
+                                        id={"studnet_id"}
+                                        autoComplete="off"
+                                        />
+                                <div>
+                                    {
+                                        this.state.errors.student_id.map(err => <div style={{color:'orange', fontSize:'1em'}} key={err}>
+                                                {err}
+                                            </div>)
+                                    }
+                                </div>
+                            </FormControl>
+                        </div>
+                        <div className="col-6">
+                            <button className="mt-4 btn btn-primary"
+                                onClick={() => this.onClick()}>
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
 
         render(){
 
@@ -151,74 +182,27 @@ export const HomeWork = connect( () => ({}) , dispatch => ({
                 <div>
                     <Navbar />
                 </div>
-                <div style={{scrollBehavior:'smooth'}} className="main">
-                    <div style={{boxShadow:'0 2px 2px 0 rgba(34,36,38,.15)' , borderRadius : '20px' }}>
-                        <div className="card card-animation"  style={{width:'100%'}}>
-                            <div className="card-header text-center head">
-                                {this.state.homework.title}
+                <div className="homework-component main">
+                    <div className="homework-component side-bar">
+                        <aside className="aside">
+                            <p onClick={this.onToggle}>
+                                Pages <span className="fas fa-caret-down"></span> 
+                            </p>
+                            <div>
+                                <ToggleLink
+                                    to="/homeworks/homework" name="homework" exact={true} />
                             </div>
-                            <div className="card-body bg-transparent" style={{backgroundColor : 'transparent'}}>
-                                <div style={{textAlign:'right' ,direction:'rtl'}} className="wrapper">
-                                    <div className="h3 alert-success text-center">{this.state.successMsg}</div>
-                                    <div className="h3 alert-danger text-center">{this.state.failedMsg}</div>
-                                    <div className="h3 alert-danger text-center">{this.state.attentionError}</div>
-                                    <div className="text-center">You Can Also Read HomeWork In Google Docs <br />
-                                        <a style={{fontSize : '3vw'}} rel="no-refrence" href={this.URL}>
-                                        GOOGLE DOC
-                                        </a></div>
-                                    <hr className="ml-4 mr-4"/>
-                                    <ContentEditableEvent lang="fa-IR" style={{textAlign:'right'}} dir="rtl" className="text p-2 text-box" 
-                                                    onMouseDown={(event) => {
-                                                        if(event.preventDefault)
-                                                            event.preventDefault();
-                                                    }}
-                                                    html={this.state.homework.description}
-                                                    onChange={(event) => {
-                                                        if(event.preventDefault)
-                                                            event.preventDefault();
-                                                        }}
-                                                    onKeyDown={(ev) => {
-                                                        if(ev.preventDefault){
-                                                            ev.preventDefault();
-                                                        }
-                                                    }}  />
-                                </div>
-                                <hr />
-                                <div>
-                                    <div className="pl-1 h2 text-danger">Attention:</div>
-                                    <div>
-                                    <p className="pl-1 pb-2 h3">{this.state.submitText}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-7 bg-transparent">
-                                        <div className="label pb-2 ml-1">  StudentID :</div>
-                                        <div className="row">
-                                            <div className="col-9">
-                                            <input className="form-control input ml-1" type="text" value={this.state.data.student_id}
-                                                    placeholder="StudentID" name="student_id"
-                                                    onChange = {(event) => this.onChange(event)} />
-                                            </div>
-                                            <div className="col-2 loading"><div></div><div></div><div></div></div>
-                                        </div>
-                                        {
-                                            this.state.dirty["student_id"] && this.state.errors.student_id.map(item => <div style={{borderRadius : '10px' , fontSize : '15px' , fontFamily:'Times' ,  color : 'red'}} className="p-1 mt-1" key={item}>
-                                                {item}
-                                            </div>)    
-                                        }
-                                        <div>
-                                            <button className="btn mt-2 ml-1 btn-primary" 
-                                                    onClick={() => this.onClick()}>
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div>
+                                <ToggleLink
+                                    to="/homeworks/project" name="project" exact={true} />
                             </div>
-                        </div>
+                        </aside>
+                    </div>
+                    <div className="home-component content">
+                        {this.makeContent(this.props.card)}
                     </div>
                 </div>
             </div>
         }
 
-})
+}))
