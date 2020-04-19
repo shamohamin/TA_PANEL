@@ -1,4 +1,4 @@
-import {GETDATA , USERS, SET_PAGE_SIZE , POSTID, POST} 
+import {GETDATA , USERS, SET_PAGE_SIZE , POST} 
                         from './Types' ;
 import { RestDataSource } from "./REST/RestDataSource" ;
 import {URLS} from './REST/URLS' ;
@@ -10,7 +10,7 @@ export const getData = (type , params) => ({
     .then(res => ({
         data : res.data.doc ,
         limit : res.data.limit ,
-        page : res.data.res ,
+        page : res.data.page ,
         params ,
         total : res.data.total ,
         isLoading : false ,
@@ -26,9 +26,9 @@ export const setPageSize = (newSize) => ({
     dataType : USERS
 })
 
-export const postID = (studentID , successCallback , faildCallback) => ({
-    type : POSTID,
-    payload : new RestDataSource(URLS[POSTID]).postRequest(studentID)
+export const postID = (studentID , successCallback , faildCallback, type) => ({
+    type : type,
+    payload : new RestDataSource(URLS[type]).postRequest(studentID)
         .then(res => {
             successCallback(res.data.web_url);
             return {
@@ -42,7 +42,6 @@ export const postID = (studentID , successCallback , faildCallback) => ({
                     typeof(err.response.data) === "undefined"){
                     throw(new Error(err));
                 }
-                // console.log(err.response.data);
                 faildCallback(err.response.data);
             }catch(ex){
                 console.log(ex);
