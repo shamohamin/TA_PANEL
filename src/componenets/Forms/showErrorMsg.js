@@ -7,5 +7,4 @@ export const ShowErrorMsg = ({field}) => {
     return context.showErrors(field).map(item => <div style={{color:'red'}} key={item}>
         {item}
     </div>)
-
 }
