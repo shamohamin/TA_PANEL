@@ -17,8 +17,6 @@ export const DataGetterConnector = (dataType , PresentedComponent) => {
         getData : (type , params) => dispatch(getData(type , params))
     }) ;
 
-
-
     return withRouter(connect(mapStateToProps,
             mapDispatchToProps)(DataGetterWrapper(dataType , PresentedComponent))) ;
 }
