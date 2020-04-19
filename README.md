@@ -1,7 +1,7 @@
 ## TA_PANEL
+This project is website for AP_98 KNTU which student can See their grades and homeworks.
 
-In the project directory, you can run:
-
+## Start 
 ### `npm start`
 
 Runs the app in the development mode.<br />
