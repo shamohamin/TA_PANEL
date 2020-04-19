@@ -1,4 +1,4 @@
-import {USERS , POSTID, POST, GITURL} from '../Types'
+import {USERS , PROJECTPOSTID, POST, GITURL, HOMEWORKPOSTID} from '../Types'
 
 // const PORT = "3600" ;
 // const PROTOCOL = "http" ;
@@ -7,7 +7,8 @@ import {USERS , POSTID, POST, GITURL} from '../Types'
 
 export const URLS = {
     [USERS] : `http://apj.ce.kntu.ac.ir:8000/api/users`,
-    [POSTID] : `http://Apj.ce.kntu.ac.ir:8000/api/projects`,
+    [PROJECTPOSTID] : `http://apj.ce.kntu.ac.ir/git/root/hw4-fariborz-hospital-manager-starter.git`,
+    [HOMEWORKPOSTID] : `http://apj.ce.kntu.ac.ir/git/root/tahw6-game-starter.git`,
     [POST] : `http://Apj.ce.kntu.ac.ir:8000/api/projects`,
     [GITURL] : `http://apj.ce.kntu.ac.ir/git`
 };
