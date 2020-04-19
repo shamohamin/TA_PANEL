@@ -8,7 +8,7 @@ export const ToggleLink = ({to , exact , name}) => {
         const activeclass = "text-warning" ;
         const combineClass = `${baseclass} ${routeProps.match ? activeclass : ""}` ;
 
-        return <Link to={to} exact={exact.toString()} className={combineClass}>
+        return <Link to={to} exact={exact.toString()} className={combineClass} replace>
             {name}
         </Link>
     }} />
