@@ -18,7 +18,12 @@ export class Connect extends React.Component {
         const page = routeProps.match.params.page ;
         switch(routeProps.match.params.section){
             case "homeworks" :
-                return <HomeWork />
+                if(page === "project")
+                    return <HomeWork time={new Date().toString()} card="project" />
+                else if(typeof page === "undefined")
+                    return <Redirect from="/homeworks" to="/homeworks/project" />
+                else
+                    return <HomeWork card="homework" />
             case "leaderboard":
                 if (typeof(page) === "undefined")
                     return <Redirect to="/leaderboard/1" />
