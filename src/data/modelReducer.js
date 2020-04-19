@@ -1,4 +1,4 @@
-import { GETDATA , SET_PAGE_SIZE, POSTID, POST } from "./Types";
+import { GETDATA , SET_PAGE_SIZE, HOMEWORKPOSTID, POST, PROJECTPOSTID } from "./Types";
 
 export const modelReducer = (store , action) => {
     switch(action.type){
@@ -15,7 +15,8 @@ export const modelReducer = (store , action) => {
                 [`${action.dataType}_params`] : action.payload.params ,
                 [`${action.dataType}_limit`] : action.payload.limit
             }
-        case POSTID:
+        case PROJECTPOSTID:
+        case HOMEWORKPOSTID:
             return {
                 ...store ,
                 web_url : action.payload.web_url,
