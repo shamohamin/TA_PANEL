@@ -10,7 +10,7 @@ import $ from 'jquery';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { PROJECTPOSTID, HOMEWORKPOSTID } from '../data/Types';
+import { PROJECTPOSTID, HOMEWORKPOSTID, POST } from '../data/Types';
 import { withRouter } from "react-router-dom";
 
 export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
@@ -113,7 +113,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 },
                 projectURL : card === "project" ? 
                     state.PROJECTURL : state.HOMEWORKURL ,
-                type : card === "project" ? PROJECTPOSTID : HOMEWORKPOSTID,
+                type : POST,
                 attentionError : card !== state.card ? ' ' : state.attentionError,
                 successMsg : card !== state.card ? ' ' : state.successMsg,
                 failedMsg : card !== state.card ? ' ' : state.failedMsg,
