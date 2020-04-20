@@ -33,7 +33,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 isSubmitted : false ,
                 data :{
                     student_id : "" ,
-                    exercise_id : 3
+                    exercise_id : props.card === "project" ? 3 : 4
                 },
                 rules : {
                     student_id : {
@@ -109,6 +109,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 rules : state.rules,
                 data : {
                     student_id : card !== state.card ? '' : state.data.student_id,
+                    exercise_id : card === "project" ? 3 : 4
                 },
                 projectURL : card === "project" ? 
                     state.PROJECTURL : state.HOMEWORKURL ,
@@ -117,7 +118,8 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 successMsg : card !== state.card ? ' ' : state.successMsg,
                 failedMsg : card !== state.card ? ' ' : state.failedMsg,
                 errors : card !== state.card ? {student_id : []} : 
-                        Validate(state.rules , state.data)
+                        Validate(state.rules , state.data),
+                
             }
         }
 
@@ -177,7 +179,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
         }
 
         render(){
-
+            // console.log(this.state.data.exercise_id)
             return <div style={{scrollBehavior:'smooth'}} className="homework-component">
                 <div>
                     <Navbar />
