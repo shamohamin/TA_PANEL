@@ -170,7 +170,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                         </div>
                         <div className="col-6">
                             <button className="mt-4 btn btn-primary"
-                                onClick={() => this.onClick()}>
+                                onClick={() => this.props.card === "project" ? this.setState({attentionError : "Not available for now"}) : this.onClick()}>
                                 Submit
                             </button>
                         </div>
