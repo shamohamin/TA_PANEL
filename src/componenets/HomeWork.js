@@ -10,7 +10,7 @@ import $ from 'jquery';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { PROJECTPOSTID, HOMEWORKPOSTID, POST } from '../data/Types';
+import { PROJECTPOSTID, POST } from '../data/Types';
 import { withRouter } from "react-router-dom";
 
 export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
@@ -86,6 +86,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                             this.setState({isSubmitted : true , successMsg : "submition was successful",
                                         failedMsg:'' , attentionError : ''});
                             window.open(url , '_blank') ;
+                            window.location.reload();
                         },
                         (message) => {
                             this.setState({isSubmitted : false , failedMsg : message , successMsg:''})                
@@ -109,7 +110,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 rules : state.rules,
                 data : {
                     student_id : card !== state.card ? '' : state.data.student_id,
-                    exercise_id : card === "project" ? 3 : 4
+                    exercise_id : card === "project" ? 5 : 4
                 },
                 projectURL : card === "project" ? 
                     state.PROJECTURL : state.HOMEWORKURL ,
