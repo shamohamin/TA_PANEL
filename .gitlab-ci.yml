@@ -1,0 +1,7 @@
+review_app:
+  stage: deploy
+  script:
+    - rsync -av --delete public /home/modir/workspace/classrome-frontend/
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: http://apj.ce.kntu.ac.ir/
