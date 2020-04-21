@@ -10,7 +10,7 @@ import $ from 'jquery';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { PROJECTPOSTID, POST } from '../data/Types';
+import { POST } from '../data/Types';
 import { withRouter } from "react-router-dom";
 
 export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
@@ -20,7 +20,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
             super(props) ;
             
             this.state = {
-                type : PROJECTPOSTID ,
+                type : POST ,
                 card : props.card,
                 PROJECTURL : 'https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing',
                 HOMEWORKURL : 'https://docs.google.com/document/d/1H1k_2Is_pshtb6KgJ_tjcVNOo8BBcSXA_mnDVM62dcc/edit?usp=sharing',
@@ -103,6 +103,15 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
             });
         }
 
+        static getExerciseId = (props) => {
+            if(props.card === "project")
+                return 5;
+            else if(props.card === "homework")
+                return 4;
+            else if(props.card === "workshop")
+                return 6;
+        }
+
         static getDerivedStateFromProps(props , state){
             const {card} = props;
             return {...state,
@@ -110,7 +119,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 rules : state.rules,
                 data : {
                     student_id : card !== state.card ? '' : state.data.student_id,
-                    exercise_id : card === "project" ? 5 : 4
+                    exercise_id : HomeWork.getExerciseId(props)
                 },
                 projectURL : card === "project" ? 
                     state.PROJECTURL : state.HOMEWORKURL ,
@@ -125,7 +134,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
         }
 
         onToggle = () => {
-            $('.aside > div').toggle('slow');
+            $('.aside > div').toggle('150', 'swing');
             $('.aside > p > span').toggleClass('fa-caret-right') ;
         }
 
@@ -143,7 +152,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 </div>
                 <a rel="noopener noreferrer" href={this.state.projectURL} target="_blank"
                     className="homework-component doc">
-                    {`${title} Doc`}
+                    {title !== "workshop" ? `${title} Doc` : ''}
                 </a>
                 <div style={{marginTop:'50px'}}>
                     <div className="row">
@@ -198,6 +207,10 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                             <div>
                                 <ToggleLink
                                     to="/homeworks/project" name="project" exact={true} />
+                            </div>
+                            <div>
+                                <ToggleLink
+                                    to="/homeworks/workshop" name="workshop" exact={true} />
                             </div>
                         </aside>
                     </div>

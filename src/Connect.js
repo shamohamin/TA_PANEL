@@ -22,8 +22,10 @@ export class Connect extends React.Component {
                     return <HomeWork time={new Date().toString()} card="project" />
                 else if(typeof page === "undefined")
                     return <Redirect from="/homeworks" to="/homeworks/project" />
+                else if(page === "workshop")
+                    return <HomeWork card="workshop" time={new Date().toString()} />
                 else
-                    return <HomeWork card="homework" />
+                    return <HomeWork time={new Date().toString()} card="homework" />
             case "leaderboard":
                 if (typeof(page) === "undefined")
                     return <Redirect to="/leaderboard/1" />

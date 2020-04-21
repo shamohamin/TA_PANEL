@@ -5,3 +5,4 @@ export const PROJECTPOSTID = "PROJECTPOSTID" ;
 export const HOMEWORKPOSTID = "HOMEWORKPOSTID" ;
 export const POST = "POST" ;
 export const GITURL = "GITURL" ;
+export const LABURL = "LABURL" ;
