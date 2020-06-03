@@ -23,7 +23,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 type : POST ,
                 card : props.card,
                 PROJECTURL : 'https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing',
-                HOMEWORKURL : 'https://docs.google.com/document/d/1H1k_2Is_pshtb6KgJ_tjcVNOo8BBcSXA_mnDVM62dcc/edit?usp=sharing',
+                HOMEWORKURL : 'http://apj.ce.kntu.ac.ir/git/root/tahw11-recursion-gui-starter/-/blob/master/README.md',
                 projectURL : 'https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing' ,
                 homework : {
                     description : HomeWork3 ,
