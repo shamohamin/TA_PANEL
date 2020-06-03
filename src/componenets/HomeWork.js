@@ -217,7 +217,7 @@ export const HomeWork = withRouter(
                     onClick={() =>
                       this.props.card === "homework"
                         ? this.onClick()
-                        : this.setState({ attentionError : "currently disabled!!"})
+                        : this.setState({ attentionError : "currently disabel!!"})
                     }
                   >
                     Submit
