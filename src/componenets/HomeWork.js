@@ -28,8 +28,8 @@ export const HomeWork = withRouter(
         this.state = {
           type: POST,
           card: props.card,
-          PROJECTURL:
-            "https://docs.google.com/document/d/1ndw67EaahUM3y1E9RBQSO8du1wM5sWH20jXTvLRtSiM/edit?usp=sharing",
+          tahw13:
+            "https://docs.google.com/document/d/11vdKYgGdQx3UHoblUPtVhAC-tNS2A90nJnUUL6ZdamQ/edit?usp=sharing",
           HOMEWORKURL:
             "http://apj.ce.kntu.ac.ir/git/root/tahw11-recursion-gui-starter/-/blob/master/README.md",
           projectURL:
@@ -126,8 +126,8 @@ export const HomeWork = withRouter(
 
       static getExerciseId = (props) => {
         if (props.card === "project") return 5;
-        else if (props.card === "homework") return 7;
-        else if (props.card === "workshop") return 6;
+        else if (props.card === "thaw12-recursion") return 7;
+        else if (props.card === "tahw13-tree-gui") return 8;
       };
 
       static getDerivedStateFromProps(props, state) {
@@ -140,7 +140,8 @@ export const HomeWork = withRouter(
             student_id: card !== state.card ? "" : state.data.student_id,
             exercise_id: HomeWork.getExerciseId(props),
           },
-          projectURL: card === "project" ? state.PROJECTURL : state.HOMEWORKURL,
+          projectURL:
+            card === "tahw13-tree-gui" ? state.tahw13 : state.HOMEWORKURL,
           type: POST,
           attentionError: card !== state.card ? " " : state.attentionError,
           successMsg: card !== state.card ? " " : state.successMsg,
@@ -215,9 +216,11 @@ export const HomeWork = withRouter(
                   <button
                     className="mt-4 btn btn-primary"
                     onClick={() =>
-                      this.props.card === "homework"
+                      this.props.card !== "project"
                         ? this.onClick()
-                        : this.setState({ attentionError : "currently disabel!!"})
+                        : this.setState({
+                            attentionError: "currently disabel!!",
+                          })
                     }
                   >
                     Submit
@@ -248,7 +251,7 @@ export const HomeWork = withRouter(
                   <div>
                     <ToggleLink
                       to="/homeworks/homework"
-                      name="homework"
+                      name="thaw12-recursion"
                       exact={true}
                     />
                   </div>
@@ -262,7 +265,7 @@ export const HomeWork = withRouter(
                   <div>
                     <ToggleLink
                       to="/homeworks/workshop"
-                      name="workshop"
+                      name="tahw13-tree-gui"
                       exact={true}
                     />
                   </div>
