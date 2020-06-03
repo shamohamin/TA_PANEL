@@ -1,6 +1,5 @@
 import React from 'react' ;
-import {HashRouter} from 'react-router-dom';
-import { Route , Redirect , Switch } 
+import { Route , Redirect , Switch, HashRouter } 
                 from "react-router-dom";
 import { LeaderBoard } from "./componenets/LeaderBoard";
 import { DataGetterConnector } from "./componenets/Connectors/DataGetterConnector";

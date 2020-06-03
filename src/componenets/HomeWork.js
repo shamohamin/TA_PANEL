@@ -33,7 +33,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
                 isSubmitted : false ,
                 data :{
                     student_id : "" ,
-                    exercise_id : props.card === "project" ? 3 : 4
+                    exercise_id : props.card === "project" ? 3 : 7
                 },
                 rules : {
                     student_id : {
@@ -107,7 +107,7 @@ export const HomeWork = withRouter(connect( () => ({}) , dispatch => ({
             if(props.card === "project")
                 return 5;
             else if(props.card === "homework")
-                return 4;
+                return 7;
             else if(props.card === "workshop")
                 return 6;
         }
