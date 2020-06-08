@@ -24,7 +24,7 @@ export class Connect extends React.Component {
           );
         else
           return (
-            <HomeWork time={new Date().toString()} card="thaw12-recursion" />
+            <HomeWork time={new Date().toString()} card={`${page}`} />
           );
       case "leaderboard":
         if (typeof page === "undefined")

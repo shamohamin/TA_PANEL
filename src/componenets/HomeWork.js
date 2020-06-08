@@ -128,6 +128,9 @@ export const HomeWork = withRouter(
         if (props.card === "project") return 5;
         else if (props.card === "thaw12-recursion") return 7;
         else if (props.card === "tahw13-tree-gui") return 8;
+        else if (props.card === "tahw13-file-gui") return 13;
+        else if (props.card === "tahw14-file-serializable") return 14;
+        else if (props.card === "tahw15-dao-file") return 15;
       };
 
       static getDerivedStateFromProps(props, state) {
@@ -250,7 +253,7 @@ export const HomeWork = withRouter(
                   </p>
                   <div>
                     <ToggleLink
-                      to="/homeworks/homework"
+                      to="/homeworks/thaw12-recursion"
                       name="thaw12-recursion"
                       exact={true}
                     />
@@ -264,8 +267,29 @@ export const HomeWork = withRouter(
                   </div>
                   <div>
                     <ToggleLink
-                      to="/homeworks/workshop"
+                      to="/homeworks/tahw13-tree-gui"
                       name="tahw13-tree-gui"
+                      exact={true}
+                    />
+                  </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/tahw13-file-gui"
+                      name="tahw13-file-gui"
+                      exact={true}
+                    />
+                    </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/tahw14-file-serializable"
+                      name="tahw14-file-serializable"
+                      exact={true}
+                    />
+                  </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/tahw15-dao-file"
+                      name="tahw15-dao-file"
                       exact={true}
                     />
                   </div>
