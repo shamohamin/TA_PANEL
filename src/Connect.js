@@ -12,20 +12,21 @@ const LeaderBoardComponenet = DataGetterConnector(USERS, LeaderBoard);
 export class Connect extends React.Component {
   selectComponent(routeProps) {
     const page = routeProps.match.params.page;
+    const pages = [
+      "project",
+      "thaw12-recursion",
+      "tahw13-tree-gui",
+      "tahw13-file-gui",
+      "tahw14-file-serializable",
+      "tahw15-dao-file",
+    ];
     switch (routeProps.match.params.section) {
       case "homeworks":
-        if (page === "project")
-          return <HomeWork time={new Date().toString()} card="project" />;
-        else if (typeof page === "undefined")
-          return <Redirect from="/homeworks" to="/homeworks/project" />;
-        else if (page === "workshop")
-          return (
-            <HomeWork card="tahw13-tree-gui" time={new Date().toString()} />
-          );
-        else
-          return (
-            <HomeWork time={new Date().toString()} card={`${page}`} />
-          );
+        return pages.find((item) => item === page) ? (
+          <HomeWork time={new Date().toString()} card={`${page}`} />
+        ) : (
+          <Redirect to="/homeworks/project" />
+        );
       case "leaderboard":
         if (typeof page === "undefined")
           return <Redirect to="/leaderboard/1" />;
