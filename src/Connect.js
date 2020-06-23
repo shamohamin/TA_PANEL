@@ -19,6 +19,7 @@ export class Connect extends React.Component {
       "tahw13-file-gui",
       "tahw14-file-serializable",
       "tahw15-dao-file",
+      "fariborz-square"
     ];
     switch (routeProps.match.params.section) {
       case "homeworks":
