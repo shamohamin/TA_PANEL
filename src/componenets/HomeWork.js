@@ -132,6 +132,7 @@ export const HomeWork = withRouter(
         else if (props.card === "tahw14-file-serializable") return 14;
         else if (props.card === "tahw15-dao-file") return 15;
         else if (props.card === "fariborz-square") return 20;
+        else if (props.card === "pattern-recognition") return 21;
       };
 
       static getDerivedStateFromProps(props, state) {
@@ -298,6 +299,13 @@ export const HomeWork = withRouter(
                     <ToggleLink
                       to="/homeworks/tahw15-dao-file"
                       name="tahw15-dao-file"
+                      exact={true}
+                    />
+                  </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/pattern-recognition"
+                      name="pattern-recognition"
                       exact={true}
                     />
                   </div>

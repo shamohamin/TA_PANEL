@@ -187,7 +187,9 @@
   font-size: 4vh;
   font-family: sans-serif;
   cursor: pointer;
-  /* height: 100vh; */
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
   background: white;
   flex: 1;
   padding-left: 10px;
