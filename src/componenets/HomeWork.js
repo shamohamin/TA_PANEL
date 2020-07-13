@@ -133,6 +133,9 @@ export const HomeWork = withRouter(
         else if (props.card === "tahw15-dao-file") return 15;
         else if (props.card === "fariborz-square") return 20;
         else if (props.card === "pattern-recognition") return 21;
+        else if (props.card === "bomberman") return 25;
+        else if (props.card === "hospital-file-manager") return 26;
+        else if (props.card === "concurrency-report") return 27;
       };
 
       static getDerivedStateFromProps(props, state) {
@@ -253,6 +256,27 @@ export const HomeWork = withRouter(
                   <p onClick={this.onToggle}>
                     Pages <span className="fas fa-caret-down"></span>
                   </p>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/bomberman"
+                      name="bomberman"
+                      exact={true}
+                    />
+                  </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/hospital-file-manager"
+                      name="hospital-file-manager"
+                      exact={true}
+                    />
+                  </div>
+                  <div>
+                    <ToggleLink
+                      to="/homeworks/concurrency-report"
+                      name="concurrency-report"
+                      exact={true}
+                    />
+                  </div>
                   <div>
                     <ToggleLink
                       to="/homeworks/thaw12-recursion"

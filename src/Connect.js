@@ -20,7 +20,10 @@ export class Connect extends React.Component {
       "tahw14-file-serializable",
       "tahw15-dao-file",
       "fariborz-square",
-      "pattern-recognition"
+      "pattern-recognition",
+      "bomberman",
+      'concurrency-report',
+      'hospital-file-manager'
     ];
     switch (routeProps.match.params.section) {
       case "homeworks":
